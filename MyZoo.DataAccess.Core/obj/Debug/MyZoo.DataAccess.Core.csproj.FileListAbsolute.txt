@@ -1,0 +1,13 @@
+d:\TestIdeas\MyZoo\MyZoo.DataAccess.Core\bin\Debug\MyZoo.DataAccess.Core.dll
+d:\TestIdeas\MyZoo\MyZoo.DataAccess.Core\bin\Debug\MyZoo.DataAccess.Core.pdb
+d:\TestIdeas\MyZoo\MyZoo.DataAccess.Core\bin\Debug\MyZoo.Common.Animal.dll
+d:\TestIdeas\MyZoo\MyZoo.DataAccess.Core\bin\Debug\MyZoo.Common.Interfaces.dll
+d:\TestIdeas\MyZoo\MyZoo.DataAccess.Core\bin\Debug\MyZoo.Common.Animal.pdb
+d:\TestIdeas\MyZoo\MyZoo.DataAccess.Core\bin\Debug\MyZoo.Common.Interfaces.pdb
+d:\TestIdeas\MyZoo\MyZoo.DataAccess.Core\obj\Debug\MyZoo.DataAccess.Core.csprojResolveAssemblyReference.cache
+d:\TestIdeas\MyZoo\MyZoo.DataAccess.Core\obj\Debug\MyZoo.DataAccess.Core.dll
+d:\TestIdeas\MyZoo\MyZoo.DataAccess.Core\obj\Debug\MyZoo.DataAccess.Core.pdb
+D:\TestIdeas\MyZoo\MyZoo.DataAccess.Core\bin\Debug\MyZoo.Common.Cages.dll
+D:\TestIdeas\MyZoo\MyZoo.DataAccess.Core\bin\Debug\MyZoo.Common.Feeds.dll
+D:\TestIdeas\MyZoo\MyZoo.DataAccess.Core\bin\Debug\MyZoo.Common.Cages.pdb
+D:\TestIdeas\MyZoo\MyZoo.DataAccess.Core\bin\Debug\MyZoo.Common.Feeds.pdb

@@ -1,0 +1,5 @@
+D:\TestIdeas\MyZoo\MyZoo.Common.Interfaces\bin\Debug\MyZoo.Common.Interfaces.dll
+D:\TestIdeas\MyZoo\MyZoo.Common.Interfaces\bin\Debug\MyZoo.Common.Interfaces.pdb
+D:\TestIdeas\MyZoo\MyZoo.Common.Interfaces\obj\Debug\MyZoo.Common.Interfaces.csprojResolveAssemblyReference.cache
+D:\TestIdeas\MyZoo\MyZoo.Common.Interfaces\obj\Debug\MyZoo.Common.Interfaces.dll
+D:\TestIdeas\MyZoo\MyZoo.Common.Interfaces\obj\Debug\MyZoo.Common.Interfaces.pdb

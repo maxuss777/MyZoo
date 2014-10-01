@@ -1,0 +1,17 @@
+D:\TestIdeas\MyZoo\MyZoo.Business.Services\bin\Debug\MyZoo.Business.Services.dll
+D:\TestIdeas\MyZoo\MyZoo.Business.Services\bin\Debug\MyZoo.Business.Services.pdb
+D:\TestIdeas\MyZoo\MyZoo.Business.Services\bin\Debug\MyZoo.Common.Animal.dll
+D:\TestIdeas\MyZoo\MyZoo.Business.Services\bin\Debug\MyZoo.Common.Cages.dll
+D:\TestIdeas\MyZoo\MyZoo.Business.Services\bin\Debug\MyZoo.Common.Factories.dll
+D:\TestIdeas\MyZoo\MyZoo.Business.Services\bin\Debug\MyZoo.Common.Feeds.dll
+D:\TestIdeas\MyZoo\MyZoo.Business.Services\bin\Debug\MyZoo.Common.Interfaces.dll
+D:\TestIdeas\MyZoo\MyZoo.Business.Services\bin\Debug\MyZoo.Common.Animal.pdb
+D:\TestIdeas\MyZoo\MyZoo.Business.Services\bin\Debug\MyZoo.Common.Cages.pdb
+D:\TestIdeas\MyZoo\MyZoo.Business.Services\bin\Debug\MyZoo.Common.Factories.pdb
+D:\TestIdeas\MyZoo\MyZoo.Business.Services\bin\Debug\MyZoo.Common.Feeds.pdb
+D:\TestIdeas\MyZoo\MyZoo.Business.Services\bin\Debug\MyZoo.Common.Interfaces.pdb
+D:\TestIdeas\MyZoo\MyZoo.Business.Services\obj\Debug\MyZoo.Business.Services.csprojResolveAssemblyReference.cache
+D:\TestIdeas\MyZoo\MyZoo.Business.Services\obj\Debug\MyZoo.Business.Services.dll
+D:\TestIdeas\MyZoo\MyZoo.Business.Services\obj\Debug\MyZoo.Business.Services.pdb
+D:\TestIdeas\MyZoo\MyZoo.Business.Services\bin\Debug\MyZoo.DataAccess.Core.dll
+D:\TestIdeas\MyZoo\MyZoo.Business.Services\bin\Debug\MyZoo.DataAccess.Core.pdb
