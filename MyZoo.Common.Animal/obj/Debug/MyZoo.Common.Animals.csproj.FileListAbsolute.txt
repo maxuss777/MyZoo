@@ -1,0 +1,7 @@
+C:\Users\Maxim\Desktop\MyZoo\MyZoo.Common.Animal\bin\Debug\MyZoo.Common.Animal.dll
+C:\Users\Maxim\Desktop\MyZoo\MyZoo.Common.Animal\bin\Debug\MyZoo.Common.Animal.pdb
+C:\Users\Maxim\Desktop\MyZoo\MyZoo.Common.Animal\bin\Debug\MyZoo.Common.Interfaces.dll
+C:\Users\Maxim\Desktop\MyZoo\MyZoo.Common.Animal\bin\Debug\MyZoo.Common.Interfaces.pdb
+C:\Users\Maxim\Desktop\MyZoo\MyZoo.Common.Animal\obj\Debug\MyZoo.Common.Animals.csprojResolveAssemblyReference.cache
+C:\Users\Maxim\Desktop\MyZoo\MyZoo.Common.Animal\obj\Debug\MyZoo.Common.Animal.dll
+C:\Users\Maxim\Desktop\MyZoo\MyZoo.Common.Animal\obj\Debug\MyZoo.Common.Animal.pdb
