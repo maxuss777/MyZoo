@@ -20,7 +20,7 @@ namespace MyZoo.Business.Services.Tests
         private List<IAnimals> _actualAnimalsList;
         private List<IAnimals> _expectedAnimalsList;
 
-        #region Create Animals
+        #region Create animals
 
         [TestMethod]
         public void CreateAnimal_Mammal()
@@ -85,12 +85,12 @@ namespace MyZoo.Business.Services.Tests
             var exc = Assert.Throws<Exception>(()=> _animalService.CreateAnimal(null));
 
             //assert
-            Assert.That(exc.Message, Is.EqualTo("Animal list musn't be empty!"));
+            Assert.That(exc.Message, Is.EqualTo("Animals list musn't be empty!"));
         }
         
         #endregion
 
-        #region Show Animals
+        #region Get all existing animals
 
         [TestMethod]
         public void GetAllAnimals()

@@ -39,9 +39,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MyZoo.Common.Animal\MyZoo.Common.Animal.csproj">
+    <ProjectReference Include="..\MyZoo.Common.Animal\MyZoo.Common.Animals.csproj">
       <Project>{7958e23b-7e38-4b33-9238-8b847364ff1c}</Project>
-      <Name>MyZoo.Common.Animal</Name>
+      <Name>MyZoo.Common.Animals</Name>
     </ProjectReference>
     <ProjectReference Include="..\MyZoo.Common.Cages\MyZoo.Common.Cages.csproj">
       <Project>{d6e0032f-be74-431f-8f7c-7dbe8a3df68f}</Project>

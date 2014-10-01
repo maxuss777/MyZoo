@@ -5,3 +5,10 @@ d:\TestIdeas\MyZoo\MyZoo.Common.Factories\obj\Debug\MyZoo.Common.Factories.pdb
 d:\TestIdeas\MyZoo\MyZoo.Common.Factories\obj\Debug\MyZoo.Common.Factories.csprojResolveAssemblyReference.cache
 D:\TestIdeas\MyZoo\MyZoo.Common.Factories\bin\Debug\MyZoo.Common.Cages.dll
 D:\TestIdeas\MyZoo\MyZoo.Common.Factories\bin\Debug\MyZoo.Common.Cages.pdb
+C:\MyZoo\MyZoo.Common.Factories\bin\Debug\MyZoo.Common.Factories.dll
+C:\MyZoo\MyZoo.Common.Factories\bin\Debug\MyZoo.Common.Factories.pdb
+C:\MyZoo\MyZoo.Common.Factories\bin\Debug\MyZoo.Common.Cages.dll
+C:\MyZoo\MyZoo.Common.Factories\bin\Debug\MyZoo.Common.Cages.pdb
+C:\MyZoo\MyZoo.Common.Factories\obj\Debug\MyZoo.Common.Factories.csprojResolveAssemblyReference.cache
+C:\MyZoo\MyZoo.Common.Factories\obj\Debug\MyZoo.Common.Factories.dll
+C:\MyZoo\MyZoo.Common.Factories\obj\Debug\MyZoo.Common.Factories.pdb

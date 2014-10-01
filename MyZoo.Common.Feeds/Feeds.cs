@@ -1,4 +1,4 @@
 ﻿namespace MyZoo.Common.Feeds
 {
-    public enum Feeds : byte { ForReptiles, ForMammals, ForBirds }
+    public enum Feeds : byte { ForReptile, ForMammal, ForBird }
 }

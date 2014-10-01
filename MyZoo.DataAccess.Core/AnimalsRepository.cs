@@ -66,7 +66,7 @@ namespace MyZoo.DataAccess.Core
 
         public IAnimals GetLastCreatedAnimal()
         {
-            const string getEntities = "SELECT TOP 1 * FROM Animals ORDER BY id DESC";
+            const string sql = "SELECT TOP 1 * FROM Animals ORDER BY id DESC";
 
             IAnimals animal = null;
 
@@ -74,7 +74,7 @@ namespace MyZoo.DataAccess.Core
             {
                 connection.Open();
 
-                using (var command = new SqlCommand(getEntities, connection))
+                using (var command = new SqlCommand(sql, connection))
                 {
                     using (SqlDataReader reader = command.ExecuteReader())
                     {

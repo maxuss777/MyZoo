@@ -17,7 +17,7 @@ namespace MyZoo.Business.Services
         public override void CreateAnimal(Dictionary<string, string> animalsListDictionary)
         {
             if(animalsListDictionary == null) 
-                throw new Exception("Animal list musn't be empty!");
+                throw new Exception("Animals list musn't be empty!");
 
             foreach (var pair in animalsListDictionary)
             {
