@@ -9,7 +9,7 @@ using Assert = NUnit.Framework.Assert;
 namespace MyZoo.Business.Services.Tests
 {
     [TestClass]
-    class CagesServicesTests
+    public class CagesServicesTests
     {
         private readonly CagesRepository _cagesRepository = new CagesRepository();
         private readonly CagesServices _cagesServices = new CagesServices();
@@ -50,7 +50,7 @@ namespace MyZoo.Business.Services.Tests
         public void CreateCageForReptile()
         {
             //arange
-            var CageToCreate = new List<Cages> { { Cages.ForReptile } };
+            var CageToCreate = new List<Cages> { Cages.ForReptile };
             const Cages actualCage = Cages.ForReptile;
 
             //act
@@ -73,7 +73,7 @@ namespace MyZoo.Business.Services.Tests
             
             //act
             var expectedCagesList = _cagesRepository.GetAll();
-            var actualCagesList = _cagesServices.GetAllExistCages();
+            var actualCagesList = _cagesServices.GetAllExistingCages();
 
             //assert
             Assert.AreEqual(expected: expectedCagesList.ToJson(), actual:actualCagesList.ToJson());
@@ -82,4 +82,5 @@ namespace MyZoo.Business.Services.Tests
         #endregion
 
     }
+
 }

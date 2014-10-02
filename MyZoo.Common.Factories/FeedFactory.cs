@@ -1,7 +1,9 @@
-﻿namespace MyZoo.Common.Factories
+﻿using System.Collections.Generic;
+
+namespace MyZoo.Common.Factories
 {
     public abstract class FeedFactory
     {
-        public abstract void CreateFeed(int type, int number);
+        public abstract void CreateFeed(List<Feeds.Feeds> feeds);
     }
 }

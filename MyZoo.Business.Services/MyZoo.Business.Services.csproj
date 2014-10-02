@@ -36,6 +36,7 @@
   <ItemGroup>
     <Compile Include="AnimalsServices.cs" />
     <Compile Include="CagesServices.cs" />
+    <Compile Include="FeedsServices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

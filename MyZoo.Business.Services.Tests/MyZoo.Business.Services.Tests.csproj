@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="AnimalServicesTests.cs" />
     <Compile Include="CagesServicesTests.cs" />
+    <Compile Include="FeedsServicesTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -2,6 +2,7 @@
 using System.Data.SqlClient;
 using MyZoo.Common.Cages;
 
+
 namespace MyZoo.DataAccess.Core
 {
     public class CagesRepository : Repository
@@ -22,39 +23,6 @@ namespace MyZoo.DataAccess.Core
                     command.ExecuteNonQuery();
                 }
             }
-        }
-
-        public Cages GetLastCreatedCage()
-        {
-            const string getEntities = "SELECT TOP 1 * FROM Cages ORDER BY id DESC";
-            
-
-            using (var connection = new SqlConnection(ConnectionString))
-            {
-                connection.Open();
-
-                using (var command = new SqlCommand(getEntities, connection))
-                {
-                    using (SqlDataReader reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            switch (reader["ForWhich"].ToString())
-                            {
-                                case "ForMammal":
-                                    return Cages.ForMammal;
-
-                                case "ForBird":
-                                    return Cages.ForBird;
-
-                                case "ForReptile":
-                                    return Cages.ForReptile;
-                            }
-                        }
-                    }
-                }
-            }
-            return Cages.NoOne;
         }
 
         public List<Cages> GetAll()
@@ -92,5 +60,39 @@ namespace MyZoo.DataAccess.Core
             }
             return cagesList;
         }
+
+        public Cages GetLastCreatedCage()
+        {
+            const string getEntities = "SELECT TOP 1 * FROM Cages ORDER BY id DESC";
+            
+
+            using (var connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+
+                using (var command = new SqlCommand(getEntities, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            switch (reader["ForWhich"].ToString())
+                            {
+                                case "ForMammal":
+                                    return Cages.ForMammal;
+
+                                case "ForBird":
+                                    return Cages.ForBird;
+
+                                case "ForReptile":
+                                    return Cages.ForReptile;
+                            }
+                        }
+                    }
+                }
+            }
+            return Cages.NoOne;
+        }
+        
     }
 }
