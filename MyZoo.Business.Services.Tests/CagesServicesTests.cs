@@ -20,11 +20,11 @@ namespace MyZoo.Business.Services.Tests
         public void CreateCageForMammal()
         {
             //arange
-            var CageToCreate = new List<Cages> {Cages.ForMammal};
+            var cageToCreate = new List<Cages> {Cages.ForMammal};
             const Cages actualCage = Cages.ForMammal;
 
             //act
-            _cagesServices.CreateCage(CageToCreate);
+            _cagesServices.CreateCage(cageToCreate);
             var expectedCage = _cagesRepository.GetLastCreatedCage();
 
             //assert
@@ -35,11 +35,11 @@ namespace MyZoo.Business.Services.Tests
         public void CreateCageForBird()
         {
             //arange
-            var CageToCreate = new List<Cages> {Cages.ForBird};
+            var cageToCreate = new List<Cages> {Cages.ForBird};
             const Cages expectedlCage = Cages.ForBird;
 
             //act
-            _cagesServices.CreateCage(CageToCreate);
+            _cagesServices.CreateCage(cageToCreate);
             var actualCage = _cagesRepository.GetLastCreatedCage();
 
             //assert
@@ -50,15 +50,36 @@ namespace MyZoo.Business.Services.Tests
         public void CreateCageForReptile()
         {
             //arange
-            var CageToCreate = new List<Cages> { Cages.ForReptile };
+            var cageToCreate = new List<Cages> { Cages.ForReptile };
             const Cages actualCage = Cages.ForReptile;
 
             //act
-            _cagesServices.CreateCage(CageToCreate);
+            _cagesServices.CreateCage(cageToCreate);
             var expectedCage = _cagesRepository.GetLastCreatedCage();
 
             //assert
             Assert.AreEqual(expected: expectedCage.ToJson(), actual: actualCage.ToJson());
+        }
+
+        [Test]
+        public void RandomCreateCages()
+        {
+            //arange
+            List<Cages> cagesToCreate = _cagesServices.CreateRandomFilledCagesList();
+            List<Cages> allExistingCages = _cagesRepository.GetAll();
+            int j = allExistingCages.Count;
+
+            //act
+            _cagesServices.CreateCage(cagesToCreate);
+            
+
+            //assert
+            for (int i = cagesToCreate.Count; i >= 0; i--)
+            {
+                Assert.AreEqual(expected:cagesToCreate, actual:allExistingCages);
+                j--;
+            }
+
         }
 
         #endregion
@@ -82,5 +103,4 @@ namespace MyZoo.Business.Services.Tests
         #endregion
 
     }
-
 }

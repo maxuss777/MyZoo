@@ -32,6 +32,20 @@ namespace MyZoo.Business.Services
             }
         }
 
+        public List<Feeds> CreateRandomFilledFeedsList()
+        {
+            var array = Enum.GetValues(typeof(Feeds));
+            var feedsList = new List<Feeds>();
+            var random = new Random();
+
+            for (byte i = 0; i < (byte)Feeds.NoOne; i++)
+            {
+                feedsList.Add((Feeds)array.GetValue(random.Next(array.Length - 1)));
+            }
+
+            return feedsList;
+        }
+
         public List<Feeds> GetAllExistinfFeeds()
         {
             return _feedsRepository.GetAll();
