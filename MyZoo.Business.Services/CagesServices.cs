@@ -32,6 +32,20 @@ namespace MyZoo.Business.Services
             }
         }
 
+        public List<Cages> CreateRandomFilledCagesList()
+        {
+            var array = Enum.GetValues(typeof(Cages));
+            var cagesList = new List<Cages>();
+            var random = new Random();
+
+            for (byte i = 0; i < (byte)Cages.NoOne; i++)
+            {
+                cagesList.Add((Cages)array.GetValue(random.Next(array.Length - 1)));
+            }
+
+            return cagesList;
+        }
+
         public List<Cages> GetAllExistingCages()
         {
             return _cagesRepository.GetAll();
