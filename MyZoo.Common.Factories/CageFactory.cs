@@ -4,6 +4,6 @@ namespace MyZoo.Common.Factories
 {
     public abstract class CageFactory
     {
-        public abstract void CreateCage(List<Cages.Cages> cages);
+        public abstract void CreateCages(List<Cages.Cages> cages);
     }
 }

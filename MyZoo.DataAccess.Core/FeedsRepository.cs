@@ -43,7 +43,7 @@ namespace MyZoo.DataAccess.Core
                         {
                             switch (reader["ForWhich"].ToString())
                             {
-                                case "ForMammals":
+                                case "ForMammal":
                                     feedsList.Add(Feeds.ForMammal);
                                     break;
                                 case "ForBird":
@@ -51,6 +51,9 @@ namespace MyZoo.DataAccess.Core
                                     break;
                                 case "ForReptile":
                                     feedsList.Add(Feeds.ForReptile);
+                                    break;
+                                case "ForFish":
+                                    feedsList.Add(Feeds.ForFish);
                                     break;
                             }
                         }

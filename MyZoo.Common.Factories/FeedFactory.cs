@@ -4,6 +4,6 @@ namespace MyZoo.Common.Factories
 {
     public abstract class FeedFactory
     {
-        public abstract void CreateFeed(List<Feeds.Feeds> feeds);
+        public abstract void CreateFeeds(List<Feeds.Feeds> feeds);
     }
 }

@@ -14,14 +14,14 @@ namespace MyZoo.Business.Services.Tests
         #region Create feeds
 
         [Test]
-        public void CreateCageForMammal()
+        public void CreateFeedForMammal()
         {
             //arange
-            var FeedToCreate = new List<Feeds> { Feeds.ForMammal };
+            var feedToCreate = new List<Feeds> {Feeds.ForMammal};
             const Feeds actualFeed = Feeds.ForMammal;
 
             //act
-            _feedsServices.CreateFeed(FeedToCreate);
+            _feedsServices.CreateFeeds(feedToCreate);
             var expectedFeed = _feedsRepository.GetLastCreatedFeed();
 
             //assert
@@ -32,11 +32,11 @@ namespace MyZoo.Business.Services.Tests
         public void CreateFeedForBird()
         {
             //arange
-            var FeedToCreate = new List<Feeds> { Feeds.ForBird };
+            var feedToCreate = new List<Feeds> {Feeds.ForBird};
             const Feeds expectedFeed = Feeds.ForBird;
 
             //act
-            _feedsServices.CreateFeed(FeedToCreate);
+            _feedsServices.CreateFeeds(feedToCreate);
             var actualFeed = _feedsRepository.GetLastCreatedFeed();
 
             //assert
@@ -47,15 +47,34 @@ namespace MyZoo.Business.Services.Tests
         public void CreateFeedForReptile()
         {
             //arange
-            var feedToCreate = new List<Feeds> { Feeds.ForReptile };
+            var feedToCreate = new List<Feeds> {Feeds.ForReptile};
             const Feeds actualFeed = Feeds.ForReptile;
 
             //act
-            _feedsServices.CreateFeed(feedToCreate);
+            _feedsServices.CreateFeeds(feedToCreate);
             var expectedFeed = _feedsRepository.GetLastCreatedFeed();
 
             //assert
             Assert.AreEqual(expected: expectedFeed.ToJson(), actual: actualFeed.ToJson());
+        }
+
+        [Test]
+        public void RandomCreateFeeds()
+        {
+            //arange
+            List<Feeds> feedsToCreate = _feedsServices.CreateRandomFilledFeedsList();
+
+            //act
+            _feedsServices.CreateFeeds(feedsToCreate);
+            List<Feeds> allExistingFeeds = _feedsRepository.GetAll();
+            int j = allExistingFeeds.Count - 1;
+
+            //assert
+            for (int i = feedsToCreate.Count - 1; i >= 0; i--)
+            {
+                Assert.AreEqual(expected: feedsToCreate[i], actual: allExistingFeeds[j]);
+                j--;
+            }
         }
 
         #endregion
@@ -63,7 +82,6 @@ namespace MyZoo.Business.Services.Tests
         #region Get all existing feeds
 
         [Test]
-
         public void GetAllFeedsAsList()
         {
             //arrange

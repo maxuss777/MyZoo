@@ -17,14 +17,14 @@ namespace MyZoo.Business.Services.Tests
         #region Create cages
 
         [Test]
-        public void CreateCageForMammal()
+        public void CreateCage_ForMammal()
         {
             //arange
             var cageToCreate = new List<Cages> {Cages.ForMammal};
             const Cages actualCage = Cages.ForMammal;
 
             //act
-            _cagesServices.CreateCage(cageToCreate);
+            _cagesServices.CreateCages(cageToCreate);
             var expectedCage = _cagesRepository.GetLastCreatedCage();
 
             //assert
@@ -32,14 +32,14 @@ namespace MyZoo.Business.Services.Tests
         }
 
         [Test]
-        public void CreateCageForBird()
+        public void CreateCage_ForBird()
         {
             //arange
             var cageToCreate = new List<Cages> {Cages.ForBird};
             const Cages expectedlCage = Cages.ForBird;
 
             //act
-            _cagesServices.CreateCage(cageToCreate);
+            _cagesServices.CreateCages(cageToCreate);
             var actualCage = _cagesRepository.GetLastCreatedCage();
 
             //assert
@@ -47,14 +47,14 @@ namespace MyZoo.Business.Services.Tests
         }
 
         [Test]
-        public void CreateCageForReptile()
+        public void CreateCage_ForReptile()
         {
             //arange
             var cageToCreate = new List<Cages> { Cages.ForReptile };
             const Cages actualCage = Cages.ForReptile;
 
             //act
-            _cagesServices.CreateCage(cageToCreate);
+            _cagesServices.CreateCages(cageToCreate);
             var expectedCage = _cagesRepository.GetLastCreatedCage();
 
             //assert
@@ -62,14 +62,14 @@ namespace MyZoo.Business.Services.Tests
         }
 
         [Test]
-        public void RandomCreateCages()
+        public void CreateRandomCages()
         {
             //arange
             List<Cages> cagesToCreate = _cagesServices.CreateRandomFilledCagesList();
             
 
             //act
-            _cagesServices.CreateCage(cagesToCreate);
+            _cagesServices.CreateCages(cagesToCreate);
             List<Cages> allExistingCages = _cagesRepository.GetAll();
             int j = allExistingCages.Count-1;
 

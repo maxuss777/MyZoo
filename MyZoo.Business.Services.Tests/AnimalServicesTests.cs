@@ -8,6 +8,7 @@ using ServiceStack;
 using System;
 using Assert = NUnit.Framework.Assert;
 
+
 namespace MyZoo.Business.Services.Tests
 {
     [TestClass]
@@ -15,8 +16,8 @@ namespace MyZoo.Business.Services.Tests
     {
         private readonly IAnimalRepository _animalRepository = new AnimalsRepository();
         private readonly AnimalsServices _animalService = new AnimalsServices();
-        private IAnimals actualAnimal;
-        private IAnimals expectedAnimal;
+        private IAnimals _actualAnimal;
+        private IAnimals _expectedAnimal;
         private List<IAnimals> _actualAnimalsList;
         private List<IAnimals> _expectedAnimalsList;
 
@@ -30,14 +31,14 @@ namespace MyZoo.Business.Services.Tests
             {
                 {"tiger", "mammal"}
             };
-            expectedAnimal = new Mammals("mammal","tiger");
+            _expectedAnimal = new Mammals("mammal","tiger");
 
             //act
-            _animalService.CreateAnimal(animalListDictionary);
-            actualAnimal = _animalRepository.GetLastCreatedAnimal();
+            _animalService.CreateAnimals(animalListDictionary);
+            _actualAnimal = _animalRepository.GetLastCreatedAnimal();
 
             //assert
-            Assert.AreEqual(expected: expectedAnimal.ToJson(), actual: actualAnimal.ToJson());
+            Assert.AreEqual(expected: _expectedAnimal.ToJson(), actual: _actualAnimal.ToJson());
         }
 
         [TestMethod]
@@ -48,14 +49,14 @@ namespace MyZoo.Business.Services.Tests
             {
                 {"crocodile", "reptile"}
             };
-            expectedAnimal = new Reptiles("reptile", "crocodile");
+            _expectedAnimal = new Reptiles("reptile", "crocodile");
 
             //act
-            _animalService.CreateAnimal(animalListDictionary);
-            actualAnimal = _animalRepository.GetLastCreatedAnimal();
+            _animalService.CreateAnimals(animalListDictionary);
+            _actualAnimal = _animalRepository.GetLastCreatedAnimal();
 
             //assert
-            Assert.AreEqual(expected: expectedAnimal.ToJson(), actual: actualAnimal.ToJson());
+            Assert.AreEqual(expected: _expectedAnimal.ToJson(), actual: _actualAnimal.ToJson());
         }
 
         [TestMethod]
@@ -66,14 +67,14 @@ namespace MyZoo.Business.Services.Tests
             {
                 {"owl", "bird"}
             };
-            expectedAnimal = new Birds("bird", "owl");
+            _expectedAnimal = new Birds("bird", "owl");
 
             //act
-            _animalService.CreateAnimal(animalListDictionary);
-            actualAnimal = _animalRepository.GetLastCreatedAnimal();
+            _animalService.CreateAnimals(animalListDictionary);
+            _actualAnimal = _animalRepository.GetLastCreatedAnimal();
 
             //assert
-            Assert.AreEqual(expected: expectedAnimal.ToJson(), actual: actualAnimal.ToJson());
+            Assert.AreEqual(expected: _expectedAnimal.ToJson(), actual: _actualAnimal.ToJson());
         }
 
         [TestMethod]
@@ -82,7 +83,7 @@ namespace MyZoo.Business.Services.Tests
             //arrange
 
             //act
-            var exc = Assert.Throws<Exception>(()=> _animalService.CreateAnimal(null));
+            var exc = Assert.Throws<Exception>(()=> _animalService.CreateAnimals(null));
 
             //assert
             Assert.That(exc.Message, Is.EqualTo("Animals list musn't be empty!"));

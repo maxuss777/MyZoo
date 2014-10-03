@@ -14,7 +14,7 @@ namespace MyZoo.Business.Services
         private IAnimals _animals;
         private List<IAnimals> _animalsList; 
 
-        public override void CreateAnimal(Dictionary<string, string> animalsListDictionary)
+        public override void CreateAnimals(Dictionary<string, string> animalsListDictionary)
         {
             if(animalsListDictionary == null) 
                 throw new Exception("Animals list musn't be empty!");
