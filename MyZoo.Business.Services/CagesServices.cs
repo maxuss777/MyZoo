@@ -10,7 +10,7 @@ namespace MyZoo.Business.Services
     {
         readonly CagesRepository _cagesRepository = new CagesRepository();
 
-        public override void CreateCage(List<Cages> cages)
+        public override void CreateCages(List<Cages> cages)
         {
             if(cages == null)
                 throw new Exception("Cages list musn't be empty!");

@@ -43,7 +43,7 @@ namespace MyZoo.DataAccess.Core
                         {
                             switch (reader["ForWhich"].ToString())
                             {
-                                case "ForMammals":
+                                case "ForMammal":
                                     cagesList.Add(Cages.ForMammal);
                                     break;
                                 case "ForBird":

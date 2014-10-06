@@ -4,6 +4,6 @@ namespace MyZoo.Common.Factories
 {
     public abstract class AnimalFactory
     {
-        public abstract void CreateAnimal(Dictionary<string, string> animalsListDictionary);
+        public abstract void CreateAnimals(Dictionary<string, string> animalsListDictionary);
     }
 }

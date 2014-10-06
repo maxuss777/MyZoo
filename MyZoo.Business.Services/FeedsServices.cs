@@ -10,7 +10,7 @@ namespace MyZoo.Business.Services
     {
         readonly FeedsRepository _feedsRepository = new FeedsRepository();
 
-        public override void CreateFeed(List<Feeds> feeds)
+        public override void CreateFeeds(List<Feeds> feeds)
         {
             if (feeds == null)
                 throw new Exception("Feeds list musn't be empty!");
@@ -27,6 +27,9 @@ namespace MyZoo.Business.Services
                         break;
                     case Feeds.ForReptile:
                         _feedsRepository.Insert(Feeds.ForReptile);
+                        break;
+                    case Feeds.ForFish:
+                        _feedsRepository.Insert(Feeds.ForFish);
                         break;
                 }
             }
