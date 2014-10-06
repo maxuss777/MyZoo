@@ -66,18 +66,19 @@ namespace MyZoo.Business.Services.Tests
         {
             //arange
             List<Cages> cagesToCreate = _cagesServices.CreateRandomFilledCagesList();
-            List<Cages> allExistingCages = _cagesRepository.GetAll();
-            int j = allExistingCages.Count;
+            
 
             //act
             _cagesServices.CreateCage(cagesToCreate);
-            
+            List<Cages> allExistingCages = _cagesRepository.GetAll();
+            int j = -1;
 
             //assert
-            for (int i = cagesToCreate.Count; i >= 0; i--)
+            for (int i = cagesToCreate.Count-1; i >= 0 ; i--)
             {
-                Assert.AreEqual(expected:cagesToCreate, actual:allExistingCages);
-                j--;
+                j++;
+                Assert.AreEqual(expected:cagesToCreate[i], actual:allExistingCages[j]);
+                
             }
 
         }
