@@ -14,7 +14,7 @@ namespace MyZoo.Business.Services.Tests
         #region Create feeds
 
         [Test]
-        public void CreateFeedForMammal()
+        public void CreateFeed_ForMammal()
         {
             //arange
             var feedToCreate = new List<Feeds> {Feeds.ForMammal};
@@ -29,7 +29,7 @@ namespace MyZoo.Business.Services.Tests
         }
 
         [Test]
-        public void CreateFeedForBird()
+        public void CreateFeed_ForBird()
         {
             //arange
             var feedToCreate = new List<Feeds> {Feeds.ForBird};
@@ -44,7 +44,7 @@ namespace MyZoo.Business.Services.Tests
         }
 
         [Test]
-        public void CreateFeedForReptile()
+        public void CreateFeed_ForReptile()
         {
             //arange
             var feedToCreate = new List<Feeds> {Feeds.ForReptile};
