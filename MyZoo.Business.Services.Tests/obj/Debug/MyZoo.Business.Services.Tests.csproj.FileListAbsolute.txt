@@ -36,10 +36,6 @@ C:\MyZoo\MyZoo.Business.Services.Tests\bin\Debug\MyZoo.Business.Services.Tests.d
 C:\MyZoo\MyZoo.Business.Services.Tests\bin\Debug\MyZoo.Business.Services.Tests.pdb
 C:\MyZoo\MyZoo.Business.Services.Tests\bin\Debug\MyZoo.Business.Services.dll
 C:\MyZoo\MyZoo.Business.Services.Tests\bin\Debug\MyZoo.Common.Animal.dll
-C:\MyZoo\MyZoo.Business.Services.Tests\bin\Debug\MyZoo.Common.Cages.dll
-C:\MyZoo\MyZoo.Business.Services.Tests\bin\Debug\MyZoo.Common.Factories.dll
-C:\MyZoo\MyZoo.Business.Services.Tests\bin\Debug\MyZoo.Common.Feeds.dll
-C:\MyZoo\MyZoo.Business.Services.Tests\bin\Debug\MyZoo.Common.Interfaces.dll
 C:\MyZoo\MyZoo.Business.Services.Tests\bin\Debug\MyZoo.DataAccess.Core.dll
 C:\MyZoo\MyZoo.Business.Services.Tests\bin\Debug\Newtonsoft.Json.dll
 C:\MyZoo\MyZoo.Business.Services.Tests\bin\Debug\nunit.framework.dll
@@ -50,10 +46,6 @@ C:\MyZoo\MyZoo.Business.Services.Tests\bin\Debug\ServiceStack.Interfaces.dll
 C:\MyZoo\MyZoo.Business.Services.Tests\bin\Debug\ServiceStack.Text.dll
 C:\MyZoo\MyZoo.Business.Services.Tests\bin\Debug\MyZoo.Business.Services.pdb
 C:\MyZoo\MyZoo.Business.Services.Tests\bin\Debug\MyZoo.Common.Animal.pdb
-C:\MyZoo\MyZoo.Business.Services.Tests\bin\Debug\MyZoo.Common.Cages.pdb
-C:\MyZoo\MyZoo.Business.Services.Tests\bin\Debug\MyZoo.Common.Factories.pdb
-C:\MyZoo\MyZoo.Business.Services.Tests\bin\Debug\MyZoo.Common.Feeds.pdb
-C:\MyZoo\MyZoo.Business.Services.Tests\bin\Debug\MyZoo.Common.Interfaces.pdb
 C:\MyZoo\MyZoo.Business.Services.Tests\bin\Debug\MyZoo.DataAccess.Core.pdb
 C:\MyZoo\MyZoo.Business.Services.Tests\bin\Debug\Newtonsoft.Json.xml
 C:\MyZoo\MyZoo.Business.Services.Tests\bin\Debug\nunit.framework.xml

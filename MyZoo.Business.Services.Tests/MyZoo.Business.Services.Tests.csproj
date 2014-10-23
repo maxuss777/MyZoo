@@ -53,25 +53,9 @@
       <Project>{339ba922-4b11-4cc7-9307-2125cd67309a}</Project>
       <Name>MyZoo.Business.Services</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MyZoo.Common.Animal\MyZoo.Common.Animals.csproj">
+    <ProjectReference Include="..\MyZoo.Common.Animal\MyZoo.Common.ZooItems.csproj">
       <Project>{7958e23b-7e38-4b33-9238-8b847364ff1c}</Project>
-      <Name>MyZoo.Common.Animals</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MyZoo.Common.Cages\MyZoo.Common.Cages.csproj">
-      <Project>{d6e0032f-be74-431f-8f7c-7dbe8a3df68f}</Project>
-      <Name>MyZoo.Common.Cages</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MyZoo.Common.Factories\MyZoo.Common.Factories.csproj">
-      <Project>{AE08471F-588D-4285-9FD8-50AA125CEC78}</Project>
-      <Name>MyZoo.Common.Factories</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MyZoo.Common.Feeds\MyZoo.Common.Feeds.csproj">
-      <Project>{845879ce-7166-4931-aada-45e511d9f8ce}</Project>
-      <Name>MyZoo.Common.Feeds</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MyZoo.Common.Interfaces\MyZoo.Common.Interfaces.csproj">
-      <Project>{7FD919E0-C941-45CB-ACF6-6AD6BD40E457}</Project>
-      <Name>MyZoo.Common.Interfaces</Name>
+      <Name>MyZoo.Common.ZooItems</Name>
     </ProjectReference>
     <ProjectReference Include="..\MyZoo.DataAccess.Core\MyZoo.DataAccess.Core.csproj">
       <Project>{a6918650-5884-4b9d-a2c4-bcca65217331}</Project>

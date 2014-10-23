@@ -38,16 +38,6 @@
   <ItemGroup>
     <Reference Include="System" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\MyZoo.Common.Cages\MyZoo.Common.Cages.csproj">
-      <Project>{D6E0032F-BE74-431F-8F7C-7DBE8A3DF68F}</Project>
-      <Name>MyZoo.Common.Cages</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MyZoo.Common.Feeds\MyZoo.Common.Feeds.csproj">
-      <Project>{845879CE-7166-4931-AADA-45E511D9F8CE}</Project>
-      <Name>MyZoo.Common.Feeds</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
