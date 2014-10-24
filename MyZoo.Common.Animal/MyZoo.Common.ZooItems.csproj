@@ -31,8 +31,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="BaseClasses\Animal.cs" />
-    <Compile Include="Cages\Cages.cs" />
+    <Compile Include="Cage\Cage.cs" />
     <Compile Include="Interfaces\Common Layer interfaces\IAnimals.cs" />
+    <Compile Include="Interfaces\Common Layer interfaces\ICages.cs" />
     <Compile Include="Interfaces\Data Access Layer Interfaces\IAnimalsRepository.cs" />
     <Compile Include="Factories\AnimalFactory.cs" />
     <Compile Include="Factories\CageFactory.cs" />

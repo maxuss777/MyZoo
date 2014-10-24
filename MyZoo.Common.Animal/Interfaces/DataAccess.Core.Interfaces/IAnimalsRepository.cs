@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace MyZoo.Common.Interfaces
 {
@@ -9,5 +10,6 @@ namespace MyZoo.Common.Interfaces
         List<IAnimals> GetAllAnimal();
 
         IAnimals GetLastCreatedAnimal();
+
     }
 }

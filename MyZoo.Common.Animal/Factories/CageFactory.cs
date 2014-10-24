@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
+using MyZoo.Common.ZooItems.Interfaces.Common_Layer_interfaces;
 
-namespace MyZoo.Common.Factories
+namespace MyZoo.Common.ZooItems
 {
     public abstract class CageFactory
     {
-        public abstract void CreateCages(List<Cages.Cages> cages);
+        public abstract void CreateCages(IEnumerable<ICages> cages);
     }
 }

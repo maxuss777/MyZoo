@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MyZoo.Common.Animal.Species;
+using MyZoo.Common.ZooItems.Species;
 using MyZoo.Common.Interfaces;
 using MyZoo.DataAccess.Core;
 using NUnit.Framework;
@@ -27,14 +27,14 @@ namespace MyZoo.Business.Services.Tests
         public void CreateAnimal_Mammal()
         {
             //arrange
-            var animalListDictionary = new Dictionary<string, string>
+            _actualAnimalsList = new List<IAnimals>
             {
-                {"tiger", "mammal"}
+                new Mammals("mammal", "tiger")
             };
             _expectedAnimal = new Mammals("mammal","tiger");
 
             //act
-            _animalService.CreateAnimals(animalListDictionary);
+            _animalService.CreateAnimals(_actualAnimalsList);
             _actualAnimal = _animalRepository.GetLastCreatedAnimal();
 
             //assert
@@ -45,14 +45,14 @@ namespace MyZoo.Business.Services.Tests
         public void CreateAnimal_Reptile()
         {
             //arrange
-            var animalListDictionary = new Dictionary<string, string>
+            _actualAnimalsList = new List<IAnimals>
             {
-                {"crocodile", "reptile"}
+                new Reptiles("reptile", "crocodile")
             };
             _expectedAnimal = new Reptiles("reptile", "crocodile");
 
             //act
-            _animalService.CreateAnimals(animalListDictionary);
+            _animalService.CreateAnimals(_actualAnimalsList);
             _actualAnimal = _animalRepository.GetLastCreatedAnimal();
 
             //assert
@@ -63,14 +63,15 @@ namespace MyZoo.Business.Services.Tests
         public void CreateAnimal_Bird()
         {
             //arrange
-            var animalListDictionary = new Dictionary<string, string>
+            _actualAnimalsList = new List<IAnimals>
             {
-                {"owl", "bird"}
+                new Birds("bird", "owl")
+
             };
             _expectedAnimal = new Birds("bird", "owl");
 
             //act
-            _animalService.CreateAnimals(animalListDictionary);
+            _animalService.CreateAnimals(_actualAnimalsList);
             _actualAnimal = _animalRepository.GetLastCreatedAnimal();
 
             //assert

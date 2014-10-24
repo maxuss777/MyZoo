@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using MyZoo.Common.Cages;
-using MyZoo.Common.Factories;
+using System.Linq;
+using MyZoo.Common.ZooItems;
+using MyZoo.Common.ZooItems.Interfaces.Common_Layer_interfaces;
 using MyZoo.DataAccess.Core;
+using System.Reflection;
 
 namespace MyZoo.Business.Services
 {
@@ -10,45 +12,39 @@ namespace MyZoo.Business.Services
     {
         readonly CagesRepository _cagesRepository = new CagesRepository();
 
-        public override void CreateCages(List<Cages> cages)
+        public override void CreateCages(IEnumerable<ICages> cages)
         {
             if(cages == null)
                 throw new Exception("Cages list musn't be empty!");
 
             foreach (var cage in cages)
             {
-                switch (cage)
-                {
-                    case Cages.ForBird:
-                        _cagesRepository.Insert(Cages.ForBird);
-                        break;
-                    case Cages.ForMammal:
-                        _cagesRepository.Insert(Cages.ForMammal);
-                        break;
-                    case Cages.ForReptile:
-                        _cagesRepository.Insert(Cages.ForReptile);
-                        break;
-                }
+                _cagesRepository.Insert(cage);
             }
         }
 
-        public List<Cages> CreateRandomFilledCagesList()
+        public IEnumerable<ICages> CreateRandomFilledCagesList()
         {
-            var array = Enum.GetValues(typeof(Cages));
-            var cagesList = new List<Cages>();
+            var cagesList = new List<ICages>();
             var random = new Random();
+            var type = Type.GetType("MyZoo.Common.BaseClasses.Cage");
+            var members = default(MemberInfo[]);
 
-            for (byte i = 0; i < (byte)Cages.NoOne; i++)
+            if (type != null)
             {
-                cagesList.Add((Cages)array.GetValue(random.Next(array.Length - 1)));
+               members = type.GetMembers();
             }
 
+            if (members != null)
+            {
+                cagesList.AddRange(members.Select(t => (ICages) members.GetValue(random.Next(members.Length - 1))));
+            }
             return cagesList;
         }
 
-        public List<Cages> GetAllExistingCages()
+        /*public List<Cages> GetAllExistingCages()
         {
             return _cagesRepository.GetAll();
-        }
+        }*/
     }
 }

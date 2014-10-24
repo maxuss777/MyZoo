@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
+using MyZoo.Common.Interfaces;
 
-namespace MyZoo.Common.Factories
+namespace MyZoo.Common.ZooItems.Factories
 {
     public abstract class AnimalFactory
     {
-        public abstract void CreateAnimals(Dictionary<string, string> animalsListDictionary);
+        public abstract void CreateAnimals(IEnumerable<IAnimals> animalsList);
     }
 }

@@ -1,5 +1,5 @@
 ﻿
-namespace MyZoo.Common.Animal.Species
+namespace MyZoo.Common.ZooItems.Species
 {
     public class Reptiles : BaseClasses.Animal
     {

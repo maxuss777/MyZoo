@@ -1,6 +1,6 @@
 ﻿using MyZoo.Common.Interfaces;
 
-namespace MyZoo.Common.Animal.BaseClasses
+namespace MyZoo.Common.ZooItems.BaseClasses
 {
     public abstract class Animal : IAnimals
     {

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Data.SqlClient;
-using MyZoo.Common.Animal.Species;
+using MyZoo.Common.ZooItems.Species;
 using MyZoo.Common.Interfaces;
 
 

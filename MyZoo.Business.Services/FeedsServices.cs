@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using MyZoo.Common.Factories;
+using MyZoo.Common.ZooItems;
 using MyZoo.Common.Feeds;
 using MyZoo.DataAccess.Core;
 
@@ -10,7 +10,7 @@ namespace MyZoo.Business.Services
     {
         readonly FeedsRepository _feedsRepository = new FeedsRepository();
 
-        public override void CreateFeeds(List<Feeds> feeds)
+        public override void CreateFeeds(IEnumerable<Feeds> feeds)
         {
             if (feeds == null)
                 throw new Exception("Feeds list musn't be empty!");

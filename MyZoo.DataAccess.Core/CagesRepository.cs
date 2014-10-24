@@ -1,16 +1,19 @@
 ﻿using System.Collections.Generic;
 using System.Data.SqlClient;
-using MyZoo.Common.Cages;
+using MyZoo.Common.ZooItems.BaseClasses;
+using MyZoo.Common.ZooItems.Interfaces.Common_Layer_interfaces;
 
 
 namespace MyZoo.DataAccess.Core
 {
     public class CagesRepository : Repository
     {
-        public void Insert(Cages cages)
+        private ICages _cage;
+        
+        public void Insert(ICages cages)
         {
             const string sql =
-               "INSERT INTO Cages(ForWhich) Values(@ForWhich)";
+               "INSERT INTO Cages(type, heght, weght, length) Values(@Type, @Heght, @Weght, @Length)";
 
             using (var connection = new SqlConnection(ConnectionString))
             {
@@ -18,81 +21,72 @@ namespace MyZoo.DataAccess.Core
 
                 using (var command = new SqlCommand(sql, connection))
                 {
-                    command.Parameters.AddWithValue("@ForWhich", cages.ToString());
+                    command.Parameters.AddWithValue("@Type", cages.Type);
+                    command.Parameters.AddWithValue("@Heght", cages.Heght);
+                    command.Parameters.AddWithValue("@Weght", cages.Weght);
+                    command.Parameters.AddWithValue("@Length", cages.Length);
 
                     command.ExecuteNonQuery();
                 }
             }
         }
 
-        public List<Cages> GetAll()
+        public IEnumerable<ICages> GetAll()
         {
             const string sql = "SELECT * FROM Cages";
 
-            var cagesList = new List<Cages>();
+          var cagesList = new List<ICages>();
 
             using (var connection = new SqlConnection(ConnectionString))
-            {
-                connection.Open();
+           {
+               connection.Open();
 
                 using (var command = new SqlCommand(sql, connection))
-                {
-                    using (SqlDataReader reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            switch (reader["ForWhich"].ToString())
-                            {
-                                case "ForMammal":
-                                    cagesList.Add(Cages.ForMammal);
-                                    break;
-                                case "ForBird":
-                                    cagesList.Add(Cages.ForBird);
-                                    break;
-                                case "ForReptile":
-                                    cagesList.Add(Cages.ForReptile);
-                                    break;
-                            }
-                        }
-                    }
-                }
+               {
+                 using (SqlDataReader reader = command.ExecuteReader())
+               {
+                     while (reader.Read())
+                     {
+                         cagesList.Add(
+                             new Cage(
+                                 reader["type"].ToString(),
+                                (int) reader["heght"],
+                                (int) reader["weght"],
+                                (int) reader["length"])
+                                );
+                     }
+                 }
+               }
 
-            }
-            return cagesList;
+           }
+           return cagesList;
         }
 
-        public Cages GetLastCreatedCage()
-        {
-            const string getEntities = "SELECT TOP 1 * FROM Cages ORDER BY id DESC";
-            
-
-            using (var connection = new SqlConnection(ConnectionString))
-            {
-                connection.Open();
+        public ICages GetLastCreatedCage()
+       {
+           const string getEntities = "SELECT TOP 1 * FROM Cages ORDER BY id DESC";
+       
+          using (var connection = new SqlConnection(ConnectionString))
+          {
+               connection.Open();
 
                 using (var command = new SqlCommand(getEntities, connection))
                 {
-                    using (SqlDataReader reader = command.ExecuteReader())
+                   using (SqlDataReader reader = command.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-                            switch (reader["ForWhich"].ToString())
-                            {
-                                case "ForMammal":
-                                    return Cages.ForMammal;
-
-                                case "ForBird":
-                                    return Cages.ForBird;
-
-                                case "ForReptile":
-                                    return Cages.ForReptile;
-                            }
+                            _cage = new Cage(
+                                reader["type"].ToString(),
+                                (int) reader["heght"],
+                                (int) reader["weght"],
+                                (int) reader["length"] );
                         }
                     }
                 }
-            }
-            return Cages.NoOne;
-        }
-        
-    }
+           }
+
+            return _cage;
+       }
+   }
 }
