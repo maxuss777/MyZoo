@@ -42,7 +42,7 @@ namespace MyZoo.Business.Services
             return cagesList;
         }
 
-        /*public List<Cages> GetAllExistingCages()
+       /* public List<ICages> GetAllExistingCages()
         {
             return _cagesRepository.GetAll();
         }*/
