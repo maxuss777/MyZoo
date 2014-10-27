@@ -32,9 +32,8 @@
   <ItemGroup>
     <Compile Include="BaseClasses\Animal.cs" />
     <Compile Include="Cage\Cage.cs" />
-    <Compile Include="Interfaces\Common.ZooItems.Interfaces\IAnimals.cs" />
-    <Compile Include="Interfaces\Common.ZooItems.Interfaces\ICages.cs" />
-    <Compile Include="Interfaces\DataAccess.Core.Interfaces\IAnimalsRepository.cs" />
+    <Compile Include="Interfaces\Common.ZooItems.Interfaces\IZooItems.cs" />
+    <Compile Include="Interfaces\DataAccess.Core.Interfaces\IZooItemsRepository.cs" />
     <Compile Include="Factories\AnimalFactory.cs" />
     <Compile Include="Factories\CageFactory.cs" />
     <Compile Include="Factories\FeedFactory.cs" />

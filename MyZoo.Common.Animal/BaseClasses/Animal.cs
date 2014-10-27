@@ -2,9 +2,9 @@
 
 namespace MyZoo.Common.ZooItems.BaseClasses
 {
-    public abstract class Animal : IAnimals
+    public class Animal : IZooItems<Animal>
     {
-        protected Animal(string specie, string kind)
+        public Animal(string specie, string kind)
         {
             Specie = specie;
             Kind = kind;

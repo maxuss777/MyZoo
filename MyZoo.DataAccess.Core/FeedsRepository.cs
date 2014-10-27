@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Data.SqlClient;
 using MyZoo.Common.Feeds;
+using MyZoo.Common.Interfaces;
 
 
 namespace MyZoo.DataAccess.Core
 {
-    public class FeedsRepository : Repository
+    public class FeedsRepository : Repository, IZooItemsRepository<Feeds>
     {
         public void Insert(Feeds feed)
         {
@@ -25,7 +26,7 @@ namespace MyZoo.DataAccess.Core
             }
         }
 
-        public List<Feeds> GetAll()
+        public IEnumerable<Feeds> GetAllItems()
         {
             const string sql = "SELECT * FROM Feeds";
 
@@ -64,7 +65,7 @@ namespace MyZoo.DataAccess.Core
             return feedsList;
         }
 
-        public Feeds GetLastCreatedFeed()
+        public Feeds GetLastCreatedItem()
         {
             const string getEntities = "SELECT TOP 1 * FROM Feeds ORDER BY id DESC";
 
@@ -96,6 +97,5 @@ namespace MyZoo.DataAccess.Core
             }
             return Feeds.NoOne;
         }
-        
     }
 }

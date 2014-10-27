@@ -1,19 +1,19 @@
 ﻿using System.Collections.Generic;
 using System.Data.SqlClient;
+using MyZoo.Common.Interfaces;
 using MyZoo.Common.ZooItems.BaseClasses;
-using MyZoo.Common.ZooItems.Interfaces.Common_Layer_interfaces;
 
 
 namespace MyZoo.DataAccess.Core
 {
-    public class CagesRepository : Repository
+    public class CagesRepository : Repository, IZooItemsRepository<IZooItems<Cage>>
     {
-        private ICages _cage;
-        
-        public void Insert(ICages cages)
+        private IZooItems<Cage> _cage;
+
+        public void Insert(IZooItems<Cage> cages)
         {
             const string sql =
-               "INSERT INTO Cages(type, heght, weght, length) Values(@Type, @Heght, @Weght, @Length)";
+               "INSERT INTO Cages(specie, kind) Values(@Specie, @Kind)";
 
             using (var connection = new SqlConnection(ConnectionString))
             {
@@ -21,21 +21,20 @@ namespace MyZoo.DataAccess.Core
 
                 using (var command = new SqlCommand(sql, connection))
                 {
-                    command.Parameters.AddWithValue("@Type", cages.Type);
-                    command.Parameters.AddWithValue("@Heght", cages.Heght);
-                    command.Parameters.AddWithValue("@Weght", cages.Weght);
-                    command.Parameters.AddWithValue("@Length", cages.Length);
+                     
+                    command.Parameters.AddWithValue("@Specie", cages.Specie);
+                    command.Parameters.AddWithValue("@Kind", cages.Kind);
 
                     command.ExecuteNonQuery();
                 }
             }
         }
 
-        public IEnumerable<ICages> GetAll()
+        public IEnumerable<IZooItems<Cage>> GetAllItems()
         {
             const string sql = "SELECT * FROM Cages";
 
-          var cagesList = new List<ICages>();
+            var cagesList = new List<IZooItems<Cage>>();
 
             using (var connection = new SqlConnection(ConnectionString))
            {
@@ -49,11 +48,9 @@ namespace MyZoo.DataAccess.Core
                      {
                          cagesList.Add(
                              new Cage(
-                                 reader["type"].ToString(),
-                                (int) reader["heght"],
-                                (int) reader["weght"],
-                                (int) reader["length"])
-                                );
+                                 reader["specie"].ToString(),
+                                 reader["kind"].ToString())
+                             );
                      }
                  }
                }
@@ -62,7 +59,7 @@ namespace MyZoo.DataAccess.Core
            return cagesList;
         }
 
-        public ICages GetLastCreatedCage()
+        public IZooItems<Cage> GetLastCreatedItem()
        {
            const string getEntities = "SELECT TOP 1 * FROM Cages ORDER BY id DESC";
        
@@ -77,10 +74,9 @@ namespace MyZoo.DataAccess.Core
                         while (reader.Read())
                         {
                             _cage = new Cage(
-                                reader["type"].ToString(),
-                                (int) reader["heght"],
-                                (int) reader["weght"],
-                                (int) reader["length"] );
+                                reader["specie"].ToString(),
+                                reader["kind"].ToString()
+                                );
                         }
                     }
                 }

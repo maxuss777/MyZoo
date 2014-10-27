@@ -51,7 +51,7 @@ namespace MyZoo.Business.Services
 
         public List<Feeds> GetAllExistinfFeeds()
         {
-            return _feedsRepository.GetAll();
+            return (List<Feeds>) _feedsRepository.GetAllItems();
         }
         
     }

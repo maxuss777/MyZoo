@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MyZoo.Common.ZooItems.Species;
+using MyZoo.Common.ZooItems.BaseClasses;
 using MyZoo.Common.Interfaces;
 using MyZoo.DataAccess.Core;
 using NUnit.Framework;
@@ -14,12 +14,12 @@ namespace MyZoo.Business.Services.Tests
     [TestClass]
     public class AnimalServicesTests
     {
-        private readonly IAnimalRepository _animalRepository = new AnimalsRepository();
+        private readonly IZooItemsRepository<IZooItems<Animal>> _animalRepository = new AnimalsRepository();
         private readonly AnimalsServices _animalService = new AnimalsServices();
-        private IAnimals _actualAnimal;
-        private IAnimals _expectedAnimal;
-        private List<IAnimals> _actualAnimalsList;
-        private List<IAnimals> _expectedAnimalsList;
+        private IZooItems<Animal> _actualAnimal;
+        private IZooItems<Animal> _expectedAnimal;
+        private List<IZooItems<Animal>> _actualAnimalsList;
+        private List<IZooItems<Animal>> _expectedAnimalsList;
 
         #region Create animals
 
@@ -27,15 +27,15 @@ namespace MyZoo.Business.Services.Tests
         public void CreateAnimal_Mammal()
         {
             //arrange
-            _actualAnimalsList = new List<IAnimals>
+            _actualAnimalsList = new List<IZooItems<Animal>>
             {
-                new Mammals("mammal", "tiger")
+                new Animal("mammal", "tiger")
             };
-            _expectedAnimal = new Mammals("mammal","tiger");
+            _expectedAnimal = new Animal("mammal","tiger");
 
             //act
             _animalService.CreateAnimals(_actualAnimalsList);
-            _actualAnimal = _animalRepository.GetLastCreatedAnimal();
+            _actualAnimal = _animalRepository.GetLastCreatedItem();
 
             //assert
             Assert.AreEqual(expected: _expectedAnimal.ToJson(), actual: _actualAnimal.ToJson());
@@ -45,15 +45,15 @@ namespace MyZoo.Business.Services.Tests
         public void CreateAnimal_Reptile()
         {
             //arrange
-            _actualAnimalsList = new List<IAnimals>
+            _actualAnimalsList = new List<IZooItems<Animal>>
             {
-                new Reptiles("reptile", "crocodile")
+                new Animal("reptile", "crocodile")
             };
-            _expectedAnimal = new Reptiles("reptile", "crocodile");
+            _expectedAnimal = new Animal("reptile", "crocodile");
 
             //act
             _animalService.CreateAnimals(_actualAnimalsList);
-            _actualAnimal = _animalRepository.GetLastCreatedAnimal();
+            _actualAnimal = _animalRepository.GetLastCreatedItem();
 
             //assert
             Assert.AreEqual(expected: _expectedAnimal.ToJson(), actual: _actualAnimal.ToJson());
@@ -63,16 +63,16 @@ namespace MyZoo.Business.Services.Tests
         public void CreateAnimal_Bird()
         {
             //arrange
-            _actualAnimalsList = new List<IAnimals>
+            _actualAnimalsList = new List<IZooItems<Animal>>
             {
-                new Birds("bird", "owl")
+                new Animal("bird", "owl")
 
             };
-            _expectedAnimal = new Birds("bird", "owl");
+            _expectedAnimal = new Animal("bird", "owl");
 
             //act
             _animalService.CreateAnimals(_actualAnimalsList);
-            _actualAnimal = _animalRepository.GetLastCreatedAnimal();
+            _actualAnimal = _animalRepository.GetLastCreatedItem();
 
             //assert
             Assert.AreEqual(expected: _expectedAnimal.ToJson(), actual: _actualAnimal.ToJson());
@@ -87,7 +87,7 @@ namespace MyZoo.Business.Services.Tests
             var exc = Assert.Throws<Exception>(()=> _animalService.CreateAnimals(null));
 
             //assert
-            Assert.That(exc.Message, Is.EqualTo("Animals list musn't be empty!"));
+            Assert.That(exc.Message, Is.EqualTo("Animals list mustn't be empty!"));
         }
         
         #endregion
@@ -98,10 +98,10 @@ namespace MyZoo.Business.Services.Tests
         public void GetAllAnimals()
         {
             //arrange
-            _actualAnimalsList = _animalRepository.GetAllAnimal();
+            _actualAnimalsList = (List<IZooItems<Animal>>) _animalRepository.GetAllItems();
 
             //act
-            _expectedAnimalsList = _animalService.GetAllAnimalsAsAList();
+            _expectedAnimalsList = (List<IZooItems<Animal>>) _animalService.GetAllAnimalsAsAList();
 
             //assert
             Assert.AreEqual(expected: _expectedAnimalsList.ToJson(),actual:_actualAnimalsList.ToJson());

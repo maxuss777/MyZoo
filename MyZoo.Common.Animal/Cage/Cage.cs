@@ -1,20 +1,16 @@
-﻿using MyZoo.Common.ZooItems.Interfaces.Common_Layer_interfaces;
+﻿using MyZoo.Common.Interfaces;
 
 namespace MyZoo.Common.ZooItems.BaseClasses
 {
-    public class Cage : ICages
+    public class Cage : IZooItems<Cage>
     {
-        public Cage(string type, int heght, int weght, int length)
+        public Cage(string specie, string kind)
         {
-            Type = type;
-            Length = length;
-            Weght = weght;
-            Heght = heght;
+            Kind = kind;
+            Specie = specie;
         }
 
-        public int Heght { get; private set; }
-        public int Weght { get; private set; }
-        public int Length { get; private set; }
-        public string Type { get; private set; }
+        public string Specie { get; private set; }
+        public string Kind { get; private set; }
     }
 }

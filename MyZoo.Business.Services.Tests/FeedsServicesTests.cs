@@ -22,7 +22,7 @@ namespace MyZoo.Business.Services.Tests
 
             //act
             _feedsServices.CreateFeeds(feedToCreate);
-            var expectedFeed = _feedsRepository.GetLastCreatedFeed();
+            var expectedFeed = _feedsRepository.GetLastCreatedItem();
 
             //assert
             Assert.AreEqual(expected: expectedFeed.ToJson(), actual: actualFeed.ToJson());
@@ -37,7 +37,7 @@ namespace MyZoo.Business.Services.Tests
 
             //act
             _feedsServices.CreateFeeds(feedToCreate);
-            var actualFeed = _feedsRepository.GetLastCreatedFeed();
+            var actualFeed = _feedsRepository.GetLastCreatedItem();
 
             //assert
             Assert.AreEqual(expected: expectedFeed.ToJson(), actual: actualFeed.ToJson());
@@ -52,7 +52,7 @@ namespace MyZoo.Business.Services.Tests
 
             //act
             _feedsServices.CreateFeeds(feedToCreate);
-            var expectedFeed = _feedsRepository.GetLastCreatedFeed();
+            var expectedFeed = _feedsRepository.GetLastCreatedItem();
 
             //assert
             Assert.AreEqual(expected: expectedFeed.ToJson(), actual: actualFeed.ToJson());
@@ -66,8 +66,9 @@ namespace MyZoo.Business.Services.Tests
 
             //act
             _feedsServices.CreateFeeds(feedsToCreate);
-            List<Feeds> allExistingFeeds = _feedsRepository.GetAll();
-            int j = allExistingFeeds.Count - 1;
+            var allExistingFeeds = (List<Feeds>) _feedsRepository.GetAllItems();
+            if (allExistingFeeds == null) return;
+            var j = allExistingFeeds.Count - 1;
 
             //assert
             for (int i = feedsToCreate.Count - 1; i >= 0; i--)
@@ -87,7 +88,7 @@ namespace MyZoo.Business.Services.Tests
             //arrange
 
             //act
-            var expectedFeedsList = _feedsRepository.GetAll();
+            var expectedFeedsList = _feedsRepository.GetAllItems();
             var actualFeedsList = _feedsServices.GetAllExistinfFeeds();
 
             //assert
