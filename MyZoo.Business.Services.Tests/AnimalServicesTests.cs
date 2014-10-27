@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MyZoo.Common.Animal.Interfaces.Common_Layer_interfaces;
+using MyZoo.Common.Animal.Interfaces.Data_Access_Layer_Interfaces;
 using MyZoo.Common.ZooItems.Species;
-using MyZoo.Common.Interfaces;
 using MyZoo.DataAccess.Core;
 using NUnit.Framework;
 using ServiceStack;
@@ -14,7 +15,7 @@ namespace MyZoo.Business.Services.Tests
     [TestClass]
     public class AnimalServicesTests
     {
-        private readonly IAnimalRepository _animalRepository = new AnimalsRepository();
+        private readonly IAnimalsRepository _animalRepository = new AnimalsRepository();
         private readonly AnimalsServices _animalService = new AnimalsServices();
         private IAnimals _actualAnimal;
         private IAnimals _expectedAnimal;
@@ -34,7 +35,7 @@ namespace MyZoo.Business.Services.Tests
             _expectedAnimal = new Mammals("mammal","tiger");
 
             //act
-            _animalService.CreateAnimals(_actualAnimalsList);
+            _animalService.CreateAnimals( _actualAnimalsList);
             _actualAnimal = _animalRepository.GetLastCreatedAnimal();
 
             //assert
@@ -87,7 +88,7 @@ namespace MyZoo.Business.Services.Tests
             var exc = Assert.Throws<Exception>(()=> _animalService.CreateAnimals(null));
 
             //assert
-            Assert.That(exc.Message, Is.EqualTo("Animals list musn't be empty!"));
+            Assert.That(exc.Message, Is.EqualTo("Animals list mustn't be empty!"));
         }
         
         #endregion

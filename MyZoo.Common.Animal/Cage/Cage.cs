@@ -1,4 +1,4 @@
-﻿using MyZoo.Common.ZooItems.Interfaces.Common_Layer_interfaces;
+﻿using MyZoo.Common.Animal.Interfaces.Common_Layer_interfaces;
 
 namespace MyZoo.Common.ZooItems.BaseClasses
 {

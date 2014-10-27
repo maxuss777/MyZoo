@@ -1,13 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Data.SqlClient;
+using MyZoo.Common.Animal.Interfaces.Common_Layer_interfaces;
+using MyZoo.Common.Animal.Interfaces.Data_Access_Layer_Interfaces;
 using MyZoo.Common.ZooItems.Species;
-using MyZoo.Common.Interfaces;
 
 
 
 namespace MyZoo.DataAccess.Core
 {
-    public class AnimalsRepository : Repository, IAnimalRepository
+    public class AnimalsRepository : Repository, IAnimalsRepository
     {
         public void Insert(IAnimals animal)
         {
@@ -99,6 +100,5 @@ namespace MyZoo.DataAccess.Core
 
             return animal;
         }
-
     }
 }

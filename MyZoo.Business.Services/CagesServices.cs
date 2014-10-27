@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using MyZoo.Common.Animal.Interfaces.Common_Layer_interfaces;
 using MyZoo.Common.ZooItems;
-using MyZoo.Common.ZooItems.Interfaces.Common_Layer_interfaces;
 using MyZoo.DataAccess.Core;
 using System.Reflection;
 
