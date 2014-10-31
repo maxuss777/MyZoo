@@ -81,7 +81,7 @@ namespace MyZoo.DataAccess.Core
                         {
                             var str = 
                                 string.Format(
-                                "MyZoo.Common.Animal.ZooItems.Animals.{0}, MyZoo.Common.Animal",reader["specie"]);
+                                "MyZoo.Common.ZooItems.Species.{0}, MyZoo.Common.Animal", reader["specie"]);
                             
                             var type = Type.GetType(str);
 
@@ -89,11 +89,10 @@ namespace MyZoo.DataAccess.Core
                             {
                                 return (IAnimal)Activator.CreateInstance(
                                     type, 
-                                    reader["specie"], 
                                     reader["kind"],
                                     reader["name"],
                                     reader["food"],
-                                    reader["cageId"].ToString());
+                                    reader["cageId"]);
                             }
                         }
                     }
