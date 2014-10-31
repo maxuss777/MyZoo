@@ -1,14 +1,15 @@
 ﻿using System.Collections.Generic;
 using System.Data.SqlClient;
+using MyZoo.Common.Animal.Interfaces.Common.ZooItems.Interfaces;
 using MyZoo.Common.Feeds;
 using MyZoo.Common.Interfaces;
 
 
 namespace MyZoo.DataAccess.Core
 {
-    public class FeedsRepository : Repository, IZooItemsRepository<Feeds>
+    public class FeedsRepository : Repository, IZooItemsRepository<IFeed>
     {
-        public void Insert(Feeds feed)
+        public void Insert(IFeed feed)
         {
             const string sql =
                "INSERT INTO Feeds(ForWhich) Values(@ForWhich)";
@@ -26,11 +27,11 @@ namespace MyZoo.DataAccess.Core
             }
         }
 
-        public IEnumerable<Feeds> GetAllItems()
+        public IEnumerable<IFeed> GetAllItems()
         {
             const string sql = "SELECT * FROM Feeds";
 
-            var feedsList = new List<Feeds>();
+            var feedsList = new List<IFeed>();
 
             using (var connection = new SqlConnection(ConnectionString))
             {
@@ -42,21 +43,10 @@ namespace MyZoo.DataAccess.Core
                     {
                         while (reader.Read())
                         {
-                            switch (reader["ForWhich"].ToString())
-                            {
-                                case "ForMammal":
-                                    feedsList.Add(Feeds.ForMammal);
-                                    break;
-                                case "ForBird":
-                                    feedsList.Add(Feeds.ForBird);
-                                    break;
-                                case "ForReptile":
-                                    feedsList.Add(Feeds.ForReptile);
-                                    break;
-                                case "ForFish":
-                                    feedsList.Add(Feeds.ForFish);
-                                    break;
-                            }
+                            feedsList.Add(new Feed(
+                                reader["ForWhom"].ToString(),
+                                reader["Type"].ToString(),
+                                (int)reader["specie"]));
                         }
                     }
                 }
@@ -65,10 +55,9 @@ namespace MyZoo.DataAccess.Core
             return feedsList;
         }
 
-        public Feeds GetLastCreatedItem()
+        public IFeed GetLastCreatedItem()
         {
             const string getEntities = "SELECT TOP 1 * FROM Feeds ORDER BY id DESC";
-
 
             using (var connection = new SqlConnection(ConnectionString))
             {
@@ -80,22 +69,15 @@ namespace MyZoo.DataAccess.Core
                     {
                         while (reader.Read())
                         {
-                            switch (reader["ForWhich"].ToString())
-                            {
-                                case "ForMammal":
-                                    return Feeds.ForMammal;
-
-                                case "ForBird":
-                                    return Feeds.ForBird;
-
-                                case "ForReptile":
-                                    return Feeds.ForReptile;
-                            }
+                            return new Feed(
+                                reader["ForWhom"].ToString(),
+                                reader["Type"].ToString(),
+                                (int) reader["specie"]);
                         }
                     }
                 }
             }
-            return Feeds.NoOne;
+            return null;
         }
     }
 }

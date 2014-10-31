@@ -1,58 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
+using MyZoo.Common.Animal.Interfaces.Common.ZooItems.Interfaces;
+using MyZoo.Common.Interfaces;
 using MyZoo.Common.ZooItems;
-using MyZoo.Common.Feeds;
 using MyZoo.DataAccess.Core;
+
 
 namespace MyZoo.Business.Services
 {
     public class FeedsServices : FeedFactory
     {
-        readonly FeedsRepository _feedsRepository = new FeedsRepository();
+        private readonly IZooItemsRepository<IFeed> _feedsRepository = new FeedsRepository();
 
-        public override void CreateFeeds(IEnumerable<Feeds> feeds)
+        public override void CreateFeeds(IEnumerable<IFeed> feeds)
         {
+            if (feeds == null)
+                throw new Exception("Feeds list musn't be empty!");
+
             if (feeds == null)
                 throw new Exception("Feeds list musn't be empty!");
 
             foreach (var feed in feeds)
             {
-                switch (feed)
-                {
-                    case Feeds.ForBird:
-                        _feedsRepository.Insert(Feeds.ForBird);
-                        break;
-                    case Feeds.ForMammal:
-                        _feedsRepository.Insert(Feeds.ForMammal);
-                        break;
-                    case Feeds.ForReptile:
-                        _feedsRepository.Insert(Feeds.ForReptile);
-                        break;
-                    case Feeds.ForFish:
-                        _feedsRepository.Insert(Feeds.ForFish);
-                        break;
-                }
+                _feedsRepository.Insert(feed);
             }
         }
 
-        public List<Feeds> CreateRandomFilledFeedsList()
+        public List<IFeed> GetAllExistinfFeeds()
         {
-            var array = Enum.GetValues(typeof(Feeds));
-            var feedsList = new List<Feeds>();
-            var random = new Random();
-
-            for (byte i = 0; i < (byte)Feeds.NoOne; i++)
-            {
-                feedsList.Add((Feeds)array.GetValue(random.Next(array.Length - 1)));
-            }
-
-            return feedsList;
+            return (List<IFeed>) _feedsRepository.GetAllItems();
         }
-
-        public List<Feeds> GetAllExistinfFeeds()
-        {
-            return (List<Feeds>) _feedsRepository.GetAllItems();
-        }
-        
     }
 }
