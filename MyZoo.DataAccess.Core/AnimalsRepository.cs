@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using MyZoo.Common.ZooItems.BaseClasses;
 using MyZoo.Common.Interfaces;
 
 
@@ -54,8 +53,12 @@ namespace MyZoo.DataAccess.Core
                             if (type != null)
                             {
                                 animalsList.Add(
-                                    (Animal)Activator.CreateInstance(
-                                    type, reader["specie"].ToString(), reader["kind"].ToString()));
+                                    (IAnimal)Activator.CreateInstance(
+                                    type, 
+                                    reader["kind"],
+                                    reader["name"],
+                                    reader["food"],
+                                    reader["cageId"]));
                             }
                         }
                     }
