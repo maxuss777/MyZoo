@@ -4,6 +4,12 @@ namespace MyZoo.Common.Feeds
 {
     public sealed class Feed : IFeed
     {
+        public Feed(string type, int gross)
+        {
+            Type = type;
+            Gross = gross; 
+        }
+
         public Feed(string type, int gross, string forWhom)
         {
             Type = type;
