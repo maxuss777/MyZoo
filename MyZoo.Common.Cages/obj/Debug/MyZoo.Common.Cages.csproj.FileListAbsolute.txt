@@ -1,0 +1,10 @@
+d:\TestIdeas\MyZoo\MyZoo.Common.Cages\bin\Debug\MyZoo.Common.Cages.dll
+d:\TestIdeas\MyZoo\MyZoo.Common.Cages\bin\Debug\MyZoo.Common.Cages.pdb
+d:\TestIdeas\MyZoo\MyZoo.Common.Cages\obj\Debug\MyZoo.Common.Cages.csprojResolveAssemblyReference.cache
+d:\TestIdeas\MyZoo\MyZoo.Common.Cages\obj\Debug\MyZoo.Common.Cages.dll
+d:\TestIdeas\MyZoo\MyZoo.Common.Cages\obj\Debug\MyZoo.Common.Cages.pdb
+C:\MyZoo\MyZoo.Common.Cages\bin\Debug\MyZoo.Common.Cages.dll
+C:\MyZoo\MyZoo.Common.Cages\bin\Debug\MyZoo.Common.Cages.pdb
+C:\MyZoo\MyZoo.Common.Cages\obj\Debug\MyZoo.Common.Cages.csprojResolveAssemblyReference.cache
+C:\MyZoo\MyZoo.Common.Cages\obj\Debug\MyZoo.Common.Cages.dll
+C:\MyZoo\MyZoo.Common.Cages\obj\Debug\MyZoo.Common.Cages.pdb

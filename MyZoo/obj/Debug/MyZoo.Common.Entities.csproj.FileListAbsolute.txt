@@ -1,0 +1,5 @@
+d:\TestIdeas\MyZoo\MyZoo\bin\Debug\MyZoo.dll
+d:\TestIdeas\MyZoo\MyZoo\bin\Debug\MyZoo.pdb
+d:\TestIdeas\MyZoo\MyZoo\obj\Debug\MyZoo.Common.Entities.csprojResolveAssemblyReference.cache
+d:\TestIdeas\MyZoo\MyZoo\obj\Debug\MyZoo.dll
+d:\TestIdeas\MyZoo\MyZoo\obj\Debug\MyZoo.pdb
