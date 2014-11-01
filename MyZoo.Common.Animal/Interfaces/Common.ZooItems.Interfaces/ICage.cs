@@ -6,6 +6,7 @@
         int Height { get; }
         int Width { get; }
         int Length { get; }
+
         string[] ShowDetails();
     }
 }

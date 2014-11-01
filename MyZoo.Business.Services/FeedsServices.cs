@@ -17,9 +17,6 @@ namespace MyZoo.Business.Services
             if (feeds == null)
                 throw new Exception("Feeds list musn't be empty!");
 
-            if (feeds == null)
-                throw new Exception("Feeds list musn't be empty!");
-
             foreach (var feed in feeds)
             {
                 _feedsRepository.Insert(feed);

@@ -4,6 +4,6 @@
     {
         string Type { get; }
         int Gross { get; }
-        string ForWhom { get; }        
+        string ForWhom { get; }
     }
 }

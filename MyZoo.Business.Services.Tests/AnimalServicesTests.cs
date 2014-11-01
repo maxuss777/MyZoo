@@ -155,5 +155,23 @@ namespace MyZoo.Business.Services.Tests
         }
 
         #endregion
+
+        #region Get animal details
+
+        [TestMethod]
+        public void GetAnimalDetails()
+        {
+            //arrange
+            var actualDetails = new string[] { "Mammal", "tiger", "jack", "meet", "17" };
+            _actualAnimal = new Mammal("tiger", "jack", "meet", 17);
+
+            //act
+            var expectedDetails = _actualAnimal.ShowDetails();
+
+            //assert
+            Assert.AreEqual(expected: expectedDetails.ToJson(), actual: actualDetails.ToJson());
+        }
+
+        #endregion
     }
 }
