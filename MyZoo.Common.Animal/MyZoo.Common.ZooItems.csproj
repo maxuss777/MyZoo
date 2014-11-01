@@ -30,23 +30,25 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="BaseClasses\Animal.cs" />
-    <Compile Include="Cage\Cage.cs" />
-    <Compile Include="Interfaces\Common Layer interfaces\IAnimals.cs" />
-    <Compile Include="Interfaces\Common Layer interfaces\ICages.cs" />
-    <Compile Include="Interfaces\Data Access Layer Interfaces\IAnimalsRepository.cs" />
+    <Compile Include="ZooItems\Animals\Animal.cs" />
+    <Compile Include="ZooItems\Cages\Cage.cs" />
+    <Compile Include="Interfaces\Common.ZooItems.Interfaces\IAnimal.cs" />
+    <Compile Include="Interfaces\Common.ZooItems.Interfaces\ICage.cs" />
+    <Compile Include="Interfaces\Common.ZooItems.Interfaces\IFeed.cs" />
+    <Compile Include="Interfaces\DataAccess.Core.Interfaces\IZooItemsRepository.cs" />
     <Compile Include="Factories\AnimalFactory.cs" />
     <Compile Include="Factories\CageFactory.cs" />
     <Compile Include="Factories\FeedFactory.cs" />
-    <Compile Include="Feeds\Feeds.cs" />
-    <Compile Include="Species\Birds.cs" />
-    <Compile Include="Species\Mammals.cs" />
+    <Compile Include="ZooItems\Feeds\Feed.cs" />
+    <Compile Include="ZooItems\Animals\Bird.cs" />
+    <Compile Include="ZooItems\Animals\Mammal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Species\Reptiles.cs" />
+    <Compile Include="ZooItems\Animals\Reptile.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

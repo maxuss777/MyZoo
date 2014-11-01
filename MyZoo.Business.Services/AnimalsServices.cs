@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using MyZoo.Common.Animal.Interfaces.Common_Layer_interfaces;
-using MyZoo.Common.Animal.Interfaces.Data_Access_Layer_Interfaces;
 using MyZoo.Common.ZooItems.Factories;
+using MyZoo.Common.Interfaces;
 using MyZoo.DataAccess.Core;
 
 
@@ -10,24 +9,22 @@ namespace MyZoo.Business.Services
 {
     public class AnimalsServices : AnimalFactory
     {
-        private readonly IAnimalsRepository _animalRepository = new AnimalsRepository();
-        private List<IAnimals> _animalsList;
+        private readonly IZooItemsRepository<IAnimal> _animalRepository = new AnimalsRepository();
 
-        public override void CreateAnimals(IEnumerable<IAnimals> animalsList)
+        public override void CreateAnimals(IEnumerable<IAnimal> animalsList)
         {
             if (animalsList == null)
                 throw new Exception("Animals list mustn't be empty!");
 
-            foreach (var pair in animalsList)
+            foreach (var animal in animalsList)
             {
-                _animalRepository.Insert(pair);
+                _animalRepository.Insert(animal);
             }
         }
 
-        public List<IAnimals> GetAllAnimalsAsAList()
+        public IEnumerable<IAnimal> GetAllExistingAnimals()
         {
-            _animalsList = _animalRepository.GetAllAnimal();
-            return _animalsList;
+            return _animalRepository.GetAllItems();
         }
     }
 }

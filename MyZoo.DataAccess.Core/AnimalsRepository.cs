@@ -1,19 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
-using MyZoo.Common.Animal.Interfaces.Common_Layer_interfaces;
-using MyZoo.Common.Animal.Interfaces.Data_Access_Layer_Interfaces;
-using MyZoo.Common.ZooItems.Species;
-
+using MyZoo.Common.Interfaces;
 
 
 namespace MyZoo.DataAccess.Core
 {
-    public class AnimalsRepository : Repository, IAnimalsRepository
+    public class AnimalsRepository : Repository, IZooItemsRepository<IAnimal>
     {
-        public void Insert(IAnimals animal)
+        public void Insert(IAnimal animal)
         {
             const string sql =
-                "INSERT INTO Animals(specie, kind) Values(@specie, @kind)";
+                "INSERT INTO Animals(specie, kind, name, food, cageId) Values(@Specie, @Kind, @Name, @Food, @CageId)";
 
             using (var connection = new SqlConnection(ConnectionString))
             {
@@ -21,19 +19,22 @@ namespace MyZoo.DataAccess.Core
 
                 using (var command = new SqlCommand(sql, connection))
                 {
-                    command.Parameters.AddWithValue("@specie", animal.Specie);
-                    command.Parameters.AddWithValue("@kind", animal.Kind);
+                    command.Parameters.AddWithValue("@Specie", animal.GetType().Name);
+                    command.Parameters.AddWithValue("@Kind", animal.Kind);
+                    command.Parameters.AddWithValue("@Name", animal.Name);
+                    command.Parameters.AddWithValue("@Food", animal.Food);
+                    command.Parameters.AddWithValue("@CageId", animal.CageId);
 
                     command.ExecuteNonQuery();
                 }
             }
         }
 
-        public List<IAnimals> GetAllAnimal()
+        public IEnumerable<IAnimal> GetAllItems()
         {
             const string sql = "SELECT * FROM Animals";
 
-            var animalsList = new List<IAnimals>();
+            var animalsList = new List<IAnimal>();
 
             using (var connection = new SqlConnection(ConnectionString))
             {
@@ -45,17 +46,19 @@ namespace MyZoo.DataAccess.Core
                     {
                         while (reader.Read())
                         {
-                            switch (reader["specie"].ToString())
+                            string str = string.Format(
+                                "MyZoo.Common.ZooItems.Species.{0}, MyZoo.Common.Animal", reader["specie"]);
+                            var type = Type.GetType(str);
+
+                            if (type != null)
                             {
-                                case "mammal":
-                                    animalsList.Add(new Mammals(reader["specie"].ToString(), reader["kind"].ToString()));
-                                    break;
-                                case "bird":
-                                    animalsList.Add(new Birds(reader["specie"].ToString(), reader["kind"].ToString()));
-                                    break;
-                                case "reptile":
-                                    animalsList.Add(new Reptiles(reader["specie"].ToString(), reader["kind"].ToString()));
-                                    break;
+                                animalsList.Add(
+                                    (IAnimal)Activator.CreateInstance(
+                                    type, 
+                                    reader["kind"],
+                                    reader["name"],
+                                    reader["food"],
+                                    reader["cageId"]));
                             }
                         }
                     }
@@ -65,11 +68,9 @@ namespace MyZoo.DataAccess.Core
             return animalsList;
         }
 
-        public IAnimals GetLastCreatedAnimal()
+        public IAnimal GetLastCreatedItem()
         {
             const string sql = "SELECT TOP 1 * FROM Animals ORDER BY id DESC";
-
-            IAnimals animal = null;
 
             using (var connection = new SqlConnection(ConnectionString))
             {
@@ -81,24 +82,27 @@ namespace MyZoo.DataAccess.Core
                     {
                         while(reader.Read())
                         {
-                            switch (reader["specie"].ToString())
+                            var str = 
+                                string.Format(
+                                "MyZoo.Common.ZooItems.Species.{0}, MyZoo.Common.Animal", reader["specie"]);
+                            
+                            var type = Type.GetType(str);
+
+                            if(type != null)
                             {
-                                case "mammal":
-                                    animal = new Mammals(reader["specie"].ToString(), reader["kind"].ToString());
-                                    break;
-                                case "bird":
-                                    animal = new Birds(reader["specie"].ToString(), reader["kind"].ToString());
-                                    break;
-                                case "reptile":
-                                    animal = new Reptiles(reader["specie"].ToString(), reader["kind"].ToString());
-                                    break;
+                                return (IAnimal)Activator.CreateInstance(
+                                    type, 
+                                    reader["kind"],
+                                    reader["name"],
+                                    reader["food"],
+                                    reader["cageId"]);
                             }
                         }
                     }
                 }
             }
-
-            return animal;
+            
+            return null;
         }
     }
 }

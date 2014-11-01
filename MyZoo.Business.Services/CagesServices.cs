@@ -1,18 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using MyZoo.Common.Animal.Interfaces.Common_Layer_interfaces;
+using MyZoo.Common.Animal.Interfaces.Common.ZooItems.Interfaces;
+using MyZoo.Common.Interfaces;
 using MyZoo.Common.ZooItems;
 using MyZoo.DataAccess.Core;
-using System.Reflection;
+
 
 namespace MyZoo.Business.Services
 {
     public class CagesServices : CageFactory
     {
-        readonly CagesRepository _cagesRepository = new CagesRepository();
+        private readonly IZooItemsRepository<ICage> _cagesRepository = new CagesRepository();
 
-        public override void CreateCages(IEnumerable<ICages> cages)
+        public override void CreateCages(IEnumerable<ICage> cages)
         {
             if(cages == null)
                 throw new Exception("Cages list musn't be empty!");
@@ -23,28 +23,9 @@ namespace MyZoo.Business.Services
             }
         }
 
-        public IEnumerable<ICages> CreateRandomFilledCagesList()
+        public IEnumerable<ICage> GetAllExistingCages()
         {
-            var cagesList = new List<ICages>();
-            var random = new Random();
-            var type = Type.GetType("MyZoo.Common.BaseClasses.Cage");
-            var members = default(MemberInfo[]);
-
-            if (type != null)
-            {
-               members = type.GetMembers();
-            }
-
-            if (members != null)
-            {
-                cagesList.AddRange(members.Select(t => (ICages) members.GetValue(random.Next(members.Length - 1))));
-            }
-            return cagesList;
+            return _cagesRepository.GetAllItems();
         }
-
-        /*public List<Cages> GetAllExistingCages()
-        {
-            return _cagesRepository.GetAll();
-        }*/
     }
 }

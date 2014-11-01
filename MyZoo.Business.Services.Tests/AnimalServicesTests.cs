@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MyZoo.Common.Animal.Interfaces.Common_Layer_interfaces;
-using MyZoo.Common.Animal.Interfaces.Data_Access_Layer_Interfaces;
+using MyZoo.Common.Interfaces;
 using MyZoo.Common.ZooItems.Species;
 using MyZoo.DataAccess.Core;
 using NUnit.Framework;
@@ -15,70 +14,117 @@ namespace MyZoo.Business.Services.Tests
     [TestClass]
     public class AnimalServicesTests
     {
-        private readonly IAnimalsRepository _animalRepository = new AnimalsRepository();
+        private readonly IZooItemsRepository<IAnimal> _animalRepository = new AnimalsRepository();
         private readonly AnimalsServices _animalService = new AnimalsServices();
-        private IAnimals _actualAnimal;
-        private IAnimals _expectedAnimal;
-        private List<IAnimals> _actualAnimalsList;
-        private List<IAnimals> _expectedAnimalsList;
+        private IAnimal _actualAnimal;
+        private IAnimal _expectedAnimal;
+        private List<IAnimal> _actualAnimalsList;
+        private List<IAnimal> _expectedAnimalsList;
 
         #region Create animals
 
         [TestMethod]
-        public void CreateAnimal_Mammal()
+        public void CreateAnimal_Mammal_With_One_Parameter_In_Constructor()
         {
             //arrange
-            _actualAnimalsList = new List<IAnimals>
+            _actualAnimalsList = new List<IAnimal>
             {
-                new Mammals("mammal", "tiger")
+                new Mammal("tiger")
             };
-            _expectedAnimal = new Mammals("mammal","tiger");
-
+            _expectedAnimal = new Mammal("tiger");
             //act
-            _animalService.CreateAnimals( _actualAnimalsList);
-            _actualAnimal = _animalRepository.GetLastCreatedAnimal();
+            _animalService.CreateAnimals(_actualAnimalsList);
+            _actualAnimal = _animalRepository.GetLastCreatedItem();
 
             //assert
             Assert.AreEqual(expected: _expectedAnimal.ToJson(), actual: _actualAnimal.ToJson());
         }
 
         [TestMethod]
-        public void CreateAnimal_Reptile()
+        public void CreateAnimal_Mammal_With_All_Parameters_In_Constructor()
         {
             //arrange
-            _actualAnimalsList = new List<IAnimals>
+            _actualAnimalsList = new List<IAnimal>
             {
-                new Reptiles("reptile", "crocodile")
+                new Mammal("tiger", "Name", "Food", 1)
             };
-            _expectedAnimal = new Reptiles("reptile", "crocodile");
-
+            _expectedAnimal = new Mammal("tiger", "Name", "Food", 1);
             //act
             _animalService.CreateAnimals(_actualAnimalsList);
-            _actualAnimal = _animalRepository.GetLastCreatedAnimal();
+            _actualAnimal = _animalRepository.GetLastCreatedItem();
 
             //assert
             Assert.AreEqual(expected: _expectedAnimal.ToJson(), actual: _actualAnimal.ToJson());
         }
 
         [TestMethod]
-        public void CreateAnimal_Bird()
+        public void CreateAnimal_Reptile_With_One_Parameter_In_Constructor()
         {
             //arrange
-            _actualAnimalsList = new List<IAnimals>
+            _actualAnimalsList = new List<IAnimal>
             {
-                new Birds("bird", "owl")
-
+                new Mammal("crocodile")
             };
-            _expectedAnimal = new Birds("bird", "owl");
-
+            _expectedAnimal = new Mammal("crocodile");
             //act
             _animalService.CreateAnimals(_actualAnimalsList);
-            _actualAnimal = _animalRepository.GetLastCreatedAnimal();
+            _actualAnimal = _animalRepository.GetLastCreatedItem();
 
             //assert
             Assert.AreEqual(expected: _expectedAnimal.ToJson(), actual: _actualAnimal.ToJson());
         }
 
+        [TestMethod]
+        public void CreateAnimal_Reptile_With_All_Parameters_In_Constructor()
+        {
+            //arrange
+            _actualAnimalsList = new List<IAnimal>
+            {
+                new Mammal("crocodile", "Name", "Food", 2)
+            };
+            _expectedAnimal = new Mammal("crocodile", "Name", "Food", 2);
+            //act
+            _animalService.CreateAnimals(_actualAnimalsList);
+            _actualAnimal = _animalRepository.GetLastCreatedItem();
+
+            //assert
+            Assert.AreEqual(expected: _expectedAnimal.ToJson(), actual: _actualAnimal.ToJson());
+        }
+
+        [TestMethod]
+        public void CreateAnimal_Bird_With_One_Parameter_In_Constructor()
+        {
+            //arrange
+            _actualAnimalsList = new List<IAnimal>
+            {
+                new Mammal("owl")
+            };
+            _expectedAnimal = new Mammal("owl");
+            //act
+            _animalService.CreateAnimals(_actualAnimalsList);
+            _actualAnimal = _animalRepository.GetLastCreatedItem();
+
+            //assert
+            Assert.AreEqual(expected: _expectedAnimal.ToJson(), actual: _actualAnimal.ToJson());
+        }
+
+        [TestMethod]
+        public void CreateAnimal_Bird_With_All_Parameters_In_Constructor()
+        {
+            //arrange
+            _actualAnimalsList = new List<IAnimal>
+            {
+                new Mammal("owl", "Name", "Food", 3)
+            };
+            _expectedAnimal = new Mammal("owl", "Name", "Food", 3);
+            //act
+            _animalService.CreateAnimals(_actualAnimalsList);
+            _actualAnimal = _animalRepository.GetLastCreatedItem();
+
+            //assert
+            Assert.AreEqual(expected: _expectedAnimal.ToJson(), actual: _actualAnimal.ToJson());
+        }
+        
         [TestMethod]
         public void CreateAnimal_AnimalListToCreateIsNull()
         {
@@ -99,10 +145,10 @@ namespace MyZoo.Business.Services.Tests
         public void GetAllAnimals()
         {
             //arrange
-            _actualAnimalsList = _animalRepository.GetAllAnimal();
+            _actualAnimalsList = (List<IAnimal>) _animalRepository.GetAllItems();
 
             //act
-            _expectedAnimalsList = _animalService.GetAllAnimalsAsAList();
+            _expectedAnimalsList = (List<IAnimal>) _animalService.GetAllExistingAnimals();
 
             //assert
             Assert.AreEqual(expected: _expectedAnimalsList.ToJson(),actual:_actualAnimalsList.ToJson());
