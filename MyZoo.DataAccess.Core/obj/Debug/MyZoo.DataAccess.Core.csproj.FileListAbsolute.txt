@@ -31,3 +31,10 @@ C:\Users\Maxim\Desktop\MyZoo\MyZoo.DataAccess.Core\bin\Debug\MyZoo.Common.Interf
 C:\Users\Maxim\Desktop\MyZoo\MyZoo.DataAccess.Core\obj\Debug\MyZoo.DataAccess.Core.csprojResolveAssemblyReference.cache
 C:\Users\Maxim\Desktop\MyZoo\MyZoo.DataAccess.Core\obj\Debug\MyZoo.DataAccess.Core.dll
 C:\Users\Maxim\Desktop\MyZoo\MyZoo.DataAccess.Core\obj\Debug\MyZoo.DataAccess.Core.pdb
+D:\MyZoo\MyZoo.DataAccess.Core\obj\Debug\MyZoo.DataAccess.Core.csprojResolveAssemblyReference.cache
+D:\MyZoo\MyZoo.DataAccess.Core\obj\Debug\MyZoo.DataAccess.Core.dll
+D:\MyZoo\MyZoo.DataAccess.Core\bin\Debug\MyZoo.DataAccess.Core.dll
+D:\MyZoo\MyZoo.DataAccess.Core\bin\Debug\MyZoo.DataAccess.Core.pdb
+D:\MyZoo\MyZoo.DataAccess.Core\bin\Debug\MyZoo.Common.Animal.dll
+D:\MyZoo\MyZoo.DataAccess.Core\bin\Debug\MyZoo.Common.Animal.pdb
+D:\MyZoo\MyZoo.DataAccess.Core\obj\Debug\MyZoo.DataAccess.Core.pdb

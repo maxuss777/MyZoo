@@ -11,7 +11,8 @@ namespace MyZoo.DataAccess.Core
         public void Insert(IAnimal animal)
         {
             const string sql =
-                "INSERT INTO Animals(specie, kind, name, food, cageId) Values(@Specie, @Kind, @Name, @Food, @CageId)";
+                "INSERT INTO Animals(specie, kind, name, food, cageId)"+
+                " Values(@Specie, @Kind, @Name, @Food, @CageId)";
 
             using (var connection = new SqlConnection(ConnectionString))
             {

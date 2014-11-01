@@ -2,8 +2,8 @@
 {
     public interface IFeed
     {
-        string ForWhom { get; }
         string Type { get; }
         int Gross { get; }
+        string ForWhom { get; }        
     }
 }

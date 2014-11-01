@@ -2,10 +2,10 @@
 {
     public interface ICage
     {
+        string Type { get; }
         int Height { get; }
         int Width { get; }
         int Length { get; }
-        int WhomBelongs { get; }
         string[] ShowDetails();
     }
 }

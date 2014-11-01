@@ -12,7 +12,8 @@ namespace MyZoo.DataAccess.Core
         public void Insert(IFeed feed)
         {
             const string sql =
-               "INSERT INTO Feeds(ForWhich) Values(@ForWhich)";
+               "INSERT INTO Feeds(type, gross, forWhom)"+
+               " Values(@Type, @Gross, @ForWhom)";
 
             using (var connection = new SqlConnection(ConnectionString))
             {
@@ -20,7 +21,9 @@ namespace MyZoo.DataAccess.Core
 
                 using (var command = new SqlCommand(sql, connection))
                 {
-                    command.Parameters.AddWithValue("@ForWhich", feed.ToString());
+                    command.Parameters.AddWithValue("@Type", feed.Type);
+                    command.Parameters.AddWithValue("@Gross", feed.Gross);
+                    command.Parameters.AddWithValue("@ForWhom", feed.ForWhom);
 
                     command.ExecuteNonQuery();
                 }
@@ -43,14 +46,12 @@ namespace MyZoo.DataAccess.Core
                     {
                         while (reader.Read())
                         {
-                            feedsList.Add(new Feed(
-                                reader["ForWhom"].ToString(),
-                                reader["Type"].ToString(),
-                                (int)reader["specie"]));
+                            feedsList.Add(
+                                new Feed(reader["type"].ToString(), (int)reader["gross"], reader["forWhom"].ToString())
+                                );
                         }
                     }
                 }
-
             }
             return feedsList;
         }
@@ -69,10 +70,8 @@ namespace MyZoo.DataAccess.Core
                     {
                         while (reader.Read())
                         {
-                            return new Feed(
-                                reader["ForWhom"].ToString(),
-                                reader["Type"].ToString(),
-                                (int) reader["specie"]);
+                            return
+                                new Feed(reader["type"].ToString(), (int)reader["gross"], reader["forWhom"].ToString());
                         }
                     }
                 }

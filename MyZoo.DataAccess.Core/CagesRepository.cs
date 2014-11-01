@@ -9,10 +9,11 @@ namespace MyZoo.DataAccess.Core
 {
     public class CagesRepository : Repository, IZooItemsRepository<ICage>
     {
-        public void Insert(ICage cages)
+        public void Insert(ICage cage)
         {
             const string sql =
-                "INSERT INTO Cages(specie) Values(@Specie)";
+                "INSERT INTO Cages(type, height, width, length)"+
+                " Values(@Type, @Height, @Width, @Length)";
 
             using (var connection = new SqlConnection(ConnectionString))
             {
@@ -20,8 +21,10 @@ namespace MyZoo.DataAccess.Core
 
                 using (var command = new SqlCommand(sql, connection))
                 {
-
-                    command.Parameters.AddWithValue("@Specie", cages.WhomBelongs);
+                    command.Parameters.AddWithValue("@Type", cage.Type);
+                    command.Parameters.AddWithValue("@Height", cage.Height);
+                    command.Parameters.AddWithValue("@Width", cage.Width);
+                    command.Parameters.AddWithValue("@Length", cage.Length);
 
                     command.ExecuteNonQuery();
                 }
@@ -44,11 +47,10 @@ namespace MyZoo.DataAccess.Core
                     {
                         while (reader.Read())
                         {
-                            cagesList.Add(new Cage((int) reader["specie"]));
+                            cagesList.Add(new Cage(reader["type"].ToString()));
                         }
                     }
                 }
-
             }
             return cagesList;
         }
@@ -67,7 +69,7 @@ namespace MyZoo.DataAccess.Core
                     {
                         while (reader.Read())
                         {
-                            return new Cage((int) reader["specie"]);
+                            return new Cage(reader["type"].ToString());
                         }
                     }
                 }

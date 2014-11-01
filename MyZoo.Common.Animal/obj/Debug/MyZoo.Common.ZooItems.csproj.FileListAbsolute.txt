@@ -3,3 +3,8 @@ C:\MyZoo\MyZoo.Common.Animal\bin\Debug\MyZoo.Common.Animal.pdb
 C:\MyZoo\MyZoo.Common.Animal\obj\Debug\MyZoo.Common.ZooItems.csprojResolveAssemblyReference.cache
 C:\MyZoo\MyZoo.Common.Animal\obj\Debug\MyZoo.Common.Animal.dll
 C:\MyZoo\MyZoo.Common.Animal\obj\Debug\MyZoo.Common.Animal.pdb
+D:\MyZoo\MyZoo.Common.Animal\bin\Debug\MyZoo.Common.Animal.dll
+D:\MyZoo\MyZoo.Common.Animal\bin\Debug\MyZoo.Common.Animal.pdb
+D:\MyZoo\MyZoo.Common.Animal\obj\Debug\MyZoo.Common.ZooItems.csprojResolveAssemblyReference.cache
+D:\MyZoo\MyZoo.Common.Animal\obj\Debug\MyZoo.Common.Animal.dll
+D:\MyZoo\MyZoo.Common.Animal\obj\Debug\MyZoo.Common.Animal.pdb
