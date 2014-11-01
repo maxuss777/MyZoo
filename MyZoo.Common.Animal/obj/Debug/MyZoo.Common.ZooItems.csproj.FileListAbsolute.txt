@@ -1,5 +1,0 @@
-C:\MyZoo\MyZoo.Common.Animal\bin\Debug\MyZoo.Common.Animal.dll
-C:\MyZoo\MyZoo.Common.Animal\bin\Debug\MyZoo.Common.Animal.pdb
-C:\MyZoo\MyZoo.Common.Animal\obj\Debug\MyZoo.Common.ZooItems.csprojResolveAssemblyReference.cache
-C:\MyZoo\MyZoo.Common.Animal\obj\Debug\MyZoo.Common.Animal.dll
-C:\MyZoo\MyZoo.Common.Animal\obj\Debug\MyZoo.Common.Animal.pdb
