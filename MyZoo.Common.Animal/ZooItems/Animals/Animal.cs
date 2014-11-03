@@ -8,8 +8,8 @@ namespace MyZoo.Common.ZooItems.BaseClasses
         protected Animal(string kind)
         {
             Kind = kind;
-            Food = "";
-            Name = "";
+            Food = string.Empty;
+            Name = string.Empty;
             CageId = 0;
         }
 
@@ -20,6 +20,11 @@ namespace MyZoo.Common.ZooItems.BaseClasses
             CageId = cageId;
             Kind = kind;
         }
+
+        public int CageId { get; private set; }
+        public string Name { get; private set; }
+        public string Kind { get; private set; }
+        public string Food { get; private set; }
 
         public virtual string[] ShowDetails()
         {
@@ -32,10 +37,5 @@ namespace MyZoo.Common.ZooItems.BaseClasses
                     CageId.ToString(CultureInfo.InvariantCulture)
                 };
         }
-
-        public int CageId { get; private set; }
-        public string Name { get; private set; }
-        public string Kind { get; private set; }
-        public string Food { get; private set; }
     }
 }

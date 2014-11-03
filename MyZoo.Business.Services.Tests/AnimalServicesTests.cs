@@ -15,7 +15,7 @@ namespace MyZoo.Business.Services.Tests
     public class AnimalServicesTests
     {
         private readonly IZooItemsRepository<IAnimal> _animalRepository = new AnimalsRepository();
-        private readonly AnimalsServices _animalService = new AnimalsServices();
+        private readonly AnimalsServices _animalServices = new AnimalsServices();
         private IAnimal _actualAnimal;
         private IAnimal _expectedAnimal;
         private List<IAnimal> _actualAnimalsList;
@@ -33,7 +33,7 @@ namespace MyZoo.Business.Services.Tests
             };
             _expectedAnimal = new Mammal("tiger");
             //act
-            _animalService.CreateAnimals(_actualAnimalsList);
+            _animalServices.CreateAnimals(_actualAnimalsList);
             _actualAnimal = _animalRepository.GetLastCreatedItem();
 
             //assert
@@ -50,7 +50,7 @@ namespace MyZoo.Business.Services.Tests
             };
             _expectedAnimal = new Mammal("tiger", "Name", "Food", 1);
             //act
-            _animalService.CreateAnimals(_actualAnimalsList);
+            _animalServices.CreateAnimals(_actualAnimalsList);
             _actualAnimal = _animalRepository.GetLastCreatedItem();
 
             //assert
@@ -67,7 +67,7 @@ namespace MyZoo.Business.Services.Tests
             };
             _expectedAnimal = new Mammal("crocodile");
             //act
-            _animalService.CreateAnimals(_actualAnimalsList);
+            _animalServices.CreateAnimals(_actualAnimalsList);
             _actualAnimal = _animalRepository.GetLastCreatedItem();
 
             //assert
@@ -84,7 +84,7 @@ namespace MyZoo.Business.Services.Tests
             };
             _expectedAnimal = new Mammal("crocodile", "Name", "Food", 2);
             //act
-            _animalService.CreateAnimals(_actualAnimalsList);
+            _animalServices.CreateAnimals(_actualAnimalsList);
             _actualAnimal = _animalRepository.GetLastCreatedItem();
 
             //assert
@@ -101,7 +101,7 @@ namespace MyZoo.Business.Services.Tests
             };
             _expectedAnimal = new Mammal("owl");
             //act
-            _animalService.CreateAnimals(_actualAnimalsList);
+            _animalServices.CreateAnimals(_actualAnimalsList);
             _actualAnimal = _animalRepository.GetLastCreatedItem();
 
             //assert
@@ -118,7 +118,7 @@ namespace MyZoo.Business.Services.Tests
             };
             _expectedAnimal = new Mammal("owl", "Name", "Food", 3);
             //act
-            _animalService.CreateAnimals(_actualAnimalsList);
+            _animalServices.CreateAnimals(_actualAnimalsList);
             _actualAnimal = _animalRepository.GetLastCreatedItem();
 
             //assert
@@ -131,7 +131,7 @@ namespace MyZoo.Business.Services.Tests
             //arrange
 
             //act
-            var exc = Assert.Throws<Exception>(()=> _animalService.CreateAnimals(null));
+            var exc = Assert.Throws<Exception>(()=> _animalServices.CreateAnimals(null));
 
             //assert
             Assert.That(exc.Message, Is.EqualTo("Animals list mustn't be empty!"));
@@ -148,7 +148,7 @@ namespace MyZoo.Business.Services.Tests
             _actualAnimalsList = (List<IAnimal>) _animalRepository.GetAllItems();
 
             //act
-            _expectedAnimalsList = (List<IAnimal>) _animalService.GetAllExistingAnimals();
+            _expectedAnimalsList = (List<IAnimal>) _animalServices.GetAllExistingAnimals();
 
             //assert
             Assert.AreEqual(expected: _expectedAnimalsList.ToJson(),actual:_actualAnimalsList.ToJson());

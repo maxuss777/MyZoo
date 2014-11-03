@@ -7,7 +7,8 @@ namespace MyZoo.Common.Feeds
         public Feed(string type, int gross)
         {
             Type = type;
-            Gross = gross; 
+            Gross = gross;
+            ForWhom = string.Empty;
         }
 
         public Feed(string type, int gross, string forWhom)
@@ -20,5 +21,15 @@ namespace MyZoo.Common.Feeds
         public string Type { get; private set; }
         public int Gross { get; private set; }
         public string ForWhom { get; private set; }
+
+        public string[] ShowDetails()
+        {
+            return new string[]
+                {
+                    Type,
+                    Gross.ToString(),
+                    ForWhom
+                };
+        }
     }
 }

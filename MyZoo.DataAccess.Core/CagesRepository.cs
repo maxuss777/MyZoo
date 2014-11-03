@@ -12,8 +12,7 @@ namespace MyZoo.DataAccess.Core
         public void Insert(ICage cage)
         {
             const string sql =
-                "INSERT INTO Cages(type, height, width, length)"+
-                " Values(@Type, @Height, @Width, @Length)";
+                "INSERT INTO Cages(type, height, width, length) Values(@Type, @Height, @Width, @Length)";
 
             using (var connection = new SqlConnection(ConnectionString))
             {
@@ -47,7 +46,7 @@ namespace MyZoo.DataAccess.Core
                     {
                         while (reader.Read())
                         {
-                            cagesList.Add(new Cage(reader["type"].ToString()));
+                            cagesList.Add(new Cage((string)reader["type"]));
                         }
                     }
                 }
@@ -69,7 +68,11 @@ namespace MyZoo.DataAccess.Core
                     {
                         while (reader.Read())
                         {
-                            return new Cage(reader["type"].ToString());
+                            return new Cage(
+                                (string)reader["type"],
+                                (int)reader["height"],
+                                (int)reader["width"],
+                                (int)reader["length"] );
                         }
                     }
                 }

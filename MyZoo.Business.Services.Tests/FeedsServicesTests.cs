@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using MyZoo.Common.Animal.Interfaces.Common.ZooItems.Interfaces;
 using MyZoo.Common.Feeds;
 using MyZoo.DataAccess.Core;
 using NUnit.Framework;
@@ -6,76 +8,63 @@ using ServiceStack;
 
 namespace MyZoo.Business.Services.Tests
 {
-    /*public class FeedsServicesTests
+    public class FeedsServicesTests
     {
-        private readonly FeedsRepository _feedsRepository = new FeedsRepository();
-        private readonly FeedsServices _feedsServices = new FeedsServices();
+        private readonly FeedsRepository _feedRepository = new FeedsRepository();
+        private readonly FeedsServices _feedServices = new FeedsServices();
+        private IFeed _actualFeed;
+        private IFeed _expectedFeed;
+        private List<IFeed> _actualFeedsList;
+        private List<IFeed> _expectedFeedsList;
 
         #region Create feeds
 
         [Test]
-        public void CreateFeed_ForMammal()
+        public void CreateFeed_With_Two_Parameter_In_Constructor()
         {
-            //arange
-            var feedToCreate = new List<Feeds> {Feeds.ForMammal};
-            const Feeds actualFeed = Feeds.ForMammal;
+            //arrange
+            _actualFeedsList = new List<IFeed>
+                {
+                    new Feed("meat", 10)
+                };
+            _expectedFeed = new Feed("meat", 10);
 
             //act
-            _feedsServices.CreateFeeds(feedToCreate);
-            var expectedFeed = _feedsRepository.GetLastCreatedItem();
+            _feedServices.CreateFeeds(_actualFeedsList);
+            _actualFeed = _feedRepository.GetLastCreatedItem();
 
             //assert
-            Assert.AreEqual(expected: expectedFeed.ToJson(), actual: actualFeed.ToJson());
+            Assert.AreEqual(expected: _expectedFeed.ToJson(), actual: _actualFeed.ToJson());
         }
 
         [Test]
-        public void CreateFeed_ForBird()
+        public void CreateFeed_With_All_Parameters_In_Constructor()
         {
-            //arange
-            var feedToCreate = new List<Feeds> {Feeds.ForBird};
-            const Feeds expectedFeed = Feeds.ForBird;
-
-            //act
-            _feedsServices.CreateFeeds(feedToCreate);
-            var actualFeed = _feedsRepository.GetLastCreatedItem();
-
-            //assert
-            Assert.AreEqual(expected: expectedFeed.ToJson(), actual: actualFeed.ToJson());
-        }
-
-        [Test]
-        public void CreateFeed_ForReptile()
-        {
-            //arange
-            var feedToCreate = new List<Feeds> {Feeds.ForReptile};
-            const Feeds actualFeed = Feeds.ForReptile;
-
-            //act
-            _feedsServices.CreateFeeds(feedToCreate);
-            var expectedFeed = _feedsRepository.GetLastCreatedItem();
-
-            //assert
-            Assert.AreEqual(expected: expectedFeed.ToJson(), actual: actualFeed.ToJson());
-        }
-
-        [Test]
-        public void RandomCreateFeeds()
-        {
-            //arange
-            List<Feeds> feedsToCreate = _feedsServices.CreateRandomFilledFeedsList();
-
-            //act
-            _feedsServices.CreateFeeds(feedsToCreate);
-            var allExistingFeeds = (List<Feeds>) _feedsRepository.GetAllItems();
-            if (allExistingFeeds == null) return;
-            var j = allExistingFeeds.Count - 1;
-
-            //assert
-            for (int i = feedsToCreate.Count - 1; i >= 0; i--)
+            //arrange
+            _actualFeedsList = new List<IFeed>
             {
-                Assert.AreEqual(expected: feedsToCreate[i], actual: allExistingFeeds[j]);
-                j--;
-            }
+                new Feed("meat", 20, "Mammal")
+            };
+            _expectedFeed = new Feed("meat", 20, "Mammal");
+
+            //act
+            _feedServices.CreateFeeds(_actualFeedsList);
+            _actualFeed = _feedRepository.GetLastCreatedItem();
+
+            //assert
+            Assert.AreEqual(expected: _expectedFeed.ToJson(), actual: _actualFeed.ToJson());
+        }
+
+        [Test]
+        public void CreateFeed_FeedsListToCreateIsNull()
+        {
+            //arrange
+
+            //act
+            var exc = Assert.Throws<Exception>(() => _feedServices.CreateFeeds(null));
+
+            //assert
+            Assert.That(exc.Message, Is.EqualTo("Feeds list musn't be empty!"));
         }
 
         #endregion
@@ -83,18 +72,36 @@ namespace MyZoo.Business.Services.Tests
         #region Get all existing feeds
 
         [Test]
-        public void GetAllFeedsAsList()
+        public void GetAlFeedsAsList()
         {
             //arrange
 
             //act
-            var expectedFeedsList = _feedsRepository.GetAllItems();
-            var actualFeedsList = _feedsServices.GetAllExistinfFeeds();
+            _expectedFeedsList = (List<IFeed>)_feedRepository.GetAllItems();
+            _actualFeedsList = (List<IFeed>)_feedServices.GetAllExistingFeeds();
 
             //assert
-            Assert.AreEqual(expected: expectedFeedsList.ToJson(), actual: actualFeedsList.ToJson());
+            Assert.AreEqual(expected: _expectedFeedsList.ToJson(), actual: _actualFeedsList.ToJson());
         }
 
         #endregion
-    }*/
+
+        #region Get feed details
+
+        [Test]
+        public void GetFeedDetails()
+        {
+            //arrange
+            var actualDetails = new[] { "meat", "30", "Mammal" };
+            _actualFeed = new Feed("meat", 30, "Mammal");
+
+            //act
+            var expectedDetails = _actualFeed.ShowDetails();
+
+            //assert
+            Assert.AreEqual(expected: expectedDetails.ToJson(), actual: actualDetails.ToJson());
+        }
+
+        #endregion
+    }
 }

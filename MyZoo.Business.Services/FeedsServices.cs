@@ -23,9 +23,9 @@ namespace MyZoo.Business.Services
             }
         }
 
-        public List<IFeed> GetAllExistinfFeeds()
+        public IEnumerable<IFeed> GetAllExistingFeeds()
         {
-            return (List<IFeed>) _feedsRepository.GetAllItems();
+            return _feedsRepository.GetAllItems();
         }
     }
 }

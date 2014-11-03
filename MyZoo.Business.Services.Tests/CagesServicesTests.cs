@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MyZoo.Common.Interfaces;
+using MyZoo.Common.Animal.Interfaces.Common.ZooItems.Interfaces;
 using MyZoo.Common.ZooItems.BaseClasses;
 using MyZoo.DataAccess.Core;
 using NUnit.Framework;
@@ -10,91 +11,65 @@ using Assert = NUnit.Framework.Assert;
 
 namespace MyZoo.Business.Services.Tests
 {
-    /*[TestClass]
+    [TestClass]
     public class CagesServicesTests
     {
-        private readonly CagesRepository _cagesRepository = new CagesRepository();
-        private readonly CagesServices _cagesServices = new CagesServices();
-        private IZooItems<Cage> _actualCage;
-
+        private readonly CagesRepository _cageRepository = new CagesRepository();
+        private readonly CagesServices _cageServices = new CagesServices();
+        private ICage _actualCage;
+        private ICage _expectedCage;
+        private List<ICage> _actualCagesList;
+        private List<ICage> _expectedCagesList;
+            
         #region Create cages
 
         [Test]
-        public void CreateCage_ForMammal()
+        public void CreateCage_With_One_Parameter_In_Constructor()
         {
-            //arange
-            var cageToCreate = new List<IZooItems<Cage>>
+            //arrange
+            _actualCagesList = new List<ICage>
                 {
-                    new Cage("mammal", "tiger" )
+                    new Cage("Mammal")
                 };
+            _expectedCage = new Cage("Mammal");
 
             //act
-            _cagesServices.CreateCages(cageToCreate);
-
-            _actualCage = _cagesRepository.GetLastCreatedItem();
-
-            var expectedCage = _cagesRepository.GetLastCreatedItem();
+            _cageServices.CreateCages(_actualCagesList);
+            _actualCage = _cageRepository.GetLastCreatedItem();
 
             //assert
-            Assert.AreEqual(expected: expectedCage.ToJson(), actual: _actualCage.ToJson());
+            Assert.AreEqual(expected: _expectedCage.ToJson(), actual: _actualCage.ToJson());
         }
 
         [Test]
-        public void CreateCage_ForBird()
+        public void CreateCage_With_All_Parameters_In_Constructor()
         {
-            //arange
-            var cageToCreate = new List<IZooItems<Cage>>
-                {
-                    new Cage("bird","owl")
-                };
-            IAnimal<Cage> expectedlCage = new Cage("bird", "owl");
-
-            //act
-            _cagesServices.CreateCages(cageToCreate);
-            var actualCage = _cagesRepository.GetLastCreatedItem();
-
-            //assert
-            Assert.AreEqual(expected: expectedlCage.ToJson(), actual: actualCage.ToJson());
-        }
-
-        [Test]
-        public void CreateCage_ForReptile()
-        {
-            //arange
-            var cageToCreate = new List<IZooItems<Cage>>
-                {
-                    new Cage("reptile","crocodile")
-                };
-            IAnimal<Cage> actualCage = new Cage("reptile", "crocodile");
-
-            //act
-            _cagesServices.CreateCages(cageToCreate);
-            var expectedCage = _cagesRepository.GetLastCreatedItem();
-
-            //assert
-            Assert.AreEqual(expected: expectedCage.ToJson(), actual: actualCage.ToJson());
-        }
-
-        /*[Test]
-        public void CreateRandomCages()
-        {
-            //arange
-            var cagesToCreate = _cagesServices.CreateRandomFilledCagesList();
-
-            //act
-
-            _cagesServices.CreateCages(cagesToCreate);
-            var allExistingCages = _cagesRepository.GetAllItems();
-            int j = allExistingCages.Count - 1;
-
-            //assert
-
-            for (int i = cagesToCreate.Count - 1; i >= 0; i--)
+            //arrange
+            _actualCagesList = new List<ICage>
             {
-                Assert.AreEqual(expected: cagesToCreate[i], actual: allExistingCages[j]);
-                j--;
-            }
-        }#1#
+                new Cage("Mammal", 2, 3, 5)
+            };
+            _expectedCage = new Cage("Mammal", 2, 3, 5);
+
+            //act
+            _cageServices.CreateCages(_actualCagesList);
+            _actualCage = _cageRepository.GetLastCreatedItem();
+
+            //assert
+            Assert.AreEqual(expected: _expectedCage.ToJson(), actual: _actualCage.ToJson());
+        }
+
+        [Test]
+        public void CreateCage_AnimalListToCreateIsNull()
+        {
+            //arrange
+
+            //act
+            var exc = Assert.Throws<Exception>(() => _cageServices.CreateCages(null));
+
+            //assert
+            Assert.That(exc.Message, Is.EqualTo("Cages list mustn't be empty!"));
+        }
 
         #endregion
 
@@ -106,13 +81,31 @@ namespace MyZoo.Business.Services.Tests
             //arrange
 
             //act
-            var expectedCagesList = _cagesRepository.GetAllItems();
-            var actualCagesList = _cagesServices.GetAllExistingCages();
+            _expectedCagesList = (List<ICage>) _cageRepository.GetAllItems();
+            _actualCagesList = (List<ICage>)_cageServices.GetAllExistingCages();
 
             //assert
-            Assert.AreEqual(expected: expectedCagesList.ToJson(), actual: actualCagesList.ToJson());
+            Assert.AreEqual(expected: _expectedCagesList.ToJson(), actual: _actualCagesList.ToJson());
         }
 
         #endregion
-    }*/
+
+        #region Get cage details
+
+        [Test]
+        public void GetCageDetails()
+        {
+            //arrange
+            var actualDetails = new[] { "Mammal", "2", "3", "5" };
+            _actualCage = new Cage("Mammal", 2, 3, 5);
+
+            //act
+            var expectedDetails = _actualCage.ShowDetails();
+
+            //assert
+            Assert.AreEqual(expected: expectedDetails.ToJson(), actual: actualDetails.ToJson());
+        }
+
+        #endregion
+    }
 } 

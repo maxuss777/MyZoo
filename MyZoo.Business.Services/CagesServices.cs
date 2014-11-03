@@ -15,7 +15,7 @@ namespace MyZoo.Business.Services
         public override void CreateCages(IEnumerable<ICage> cages)
         {
             if(cages == null)
-                throw new Exception("Cages list musn't be empty!");
+                throw new Exception("Cages list mustn't be empty!");
 
             foreach (var cage in cages)
             {

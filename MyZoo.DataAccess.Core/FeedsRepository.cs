@@ -12,8 +12,7 @@ namespace MyZoo.DataAccess.Core
         public void Insert(IFeed feed)
         {
             const string sql =
-               "INSERT INTO Feeds(type, gross, forWhom)"+
-               " Values(@Type, @Gross, @ForWhom)";
+               "INSERT INTO Feeds(type, gross, forWhom) Values(@Type, @Gross, @ForWhom)";
 
             using (var connection = new SqlConnection(ConnectionString))
             {
