@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using MyZoo.Common.ZooItems.Factories;
+using MyZoo.Common.ZooItems;
 using MyZoo.Common.Interfaces;
 using MyZoo.DataAccess.Core;
 
@@ -26,5 +26,6 @@ namespace MyZoo.Business.Services
         {
             return _animalRepository.GetAllItems();
         }
+
     }
 }

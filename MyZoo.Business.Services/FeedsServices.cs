@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using MyZoo.Common.Animal.Interfaces.Common.ZooItems.Interfaces;
-using MyZoo.Common.Interfaces;
 using MyZoo.Common.ZooItems;
+using MyZoo.Common.Interfaces;
 using MyZoo.DataAccess.Core;
 
 
@@ -27,5 +26,17 @@ namespace MyZoo.Business.Services
         {
             return _feedsRepository.GetAllItems();
         }
+
+        public void CreateFeedsRandomly(Type baseClass)
+        {
+            var random = new Random();
+            var feedsList = new List<IFeed>();
+            var derivedClasses = Services.GetAllDerivedTypesOf(baseClass);
+                
+            feedsList.Add(new Feed(0, derivedClasses[random.Next(0, derivedClasses.Count)].Name));
+
+            CreateFeeds(feedsList);
+        }
+
     }
 }

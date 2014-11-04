@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using MyZoo.Common.Animal.Interfaces.Common.ZooItems.Interfaces;
 using MyZoo.Common.Interfaces;
 using MyZoo.Common.ZooItems;
 using MyZoo.DataAccess.Core;
@@ -26,6 +25,17 @@ namespace MyZoo.Business.Services
         public IEnumerable<ICage> GetAllExistingCages()
         {
             return _cagesRepository.GetAllItems();
+        }
+
+        public void CreateCageRandomly(Type baseClass)
+        {
+            var random = new Random();
+            var cagesList = new List<ICage>();
+            var derivedClasses = Services.GetAllDerivedTypesOf(baseClass);
+                
+            cagesList.Add(new Cage(0, derivedClasses[random.Next(0, derivedClasses.Count)].Name));
+
+            CreateCages(cagesList);
         }
     }
 }

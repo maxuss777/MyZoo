@@ -1,20 +1,22 @@
-﻿using System.Globalization;
-using MyZoo.Common.Animal.Interfaces.Common.ZooItems.Interfaces;
+﻿using MyZoo.Common.Interfaces;
 
-namespace MyZoo.Common.ZooItems.BaseClasses
+
+namespace MyZoo.Common.ZooItems
 {
     public sealed class Cage : ICage
     {
-        public Cage(string type)
+        public Cage(int id, string type)
         {
+            Id = id;
             Type = type;
             Length = 0;
             Width = 0;
             Height = 0;
         }
         
-        public Cage(string type, int height, int width, int length)
+        public Cage(int id, string type, int height, int width, int length)
         {
+            Id = id;
             Type = type;
             Length = length;
             Width = width;
@@ -25,15 +27,17 @@ namespace MyZoo.Common.ZooItems.BaseClasses
         public int Height { get; private set; }
         public int Width { get; private set; }
         public int Length { get; private set; }
-        
+        public int Id { get; private set; }
+
         public string[] ShowDetails()
         {
             return new[]
                 {
+                    Id.ToString(),
                     Type,
-                    Height.ToString(CultureInfo.InvariantCulture),
-                    Width.ToString(CultureInfo.InvariantCulture),
-                    Length.ToString(CultureInfo.InvariantCulture)
+                    Height.ToString(),
+                    Width.ToString(),
+                    Length.ToString()
                 };
         }
     }

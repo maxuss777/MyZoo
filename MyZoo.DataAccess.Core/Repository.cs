@@ -1,5 +1,6 @@
 ﻿using System.Configuration;
 
+
 namespace MyZoo.DataAccess.Core
 {
     public class Repository

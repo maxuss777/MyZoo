@@ -1,20 +1,22 @@
-﻿using System.Globalization;
-using MyZoo.Common.Interfaces;
+﻿using MyZoo.Common.Interfaces;
 
-namespace MyZoo.Common.ZooItems.BaseClasses
+
+namespace MyZoo.Common.ZooItems
 {
     public abstract class Animal : IAnimal
     {
-        protected Animal(string kind)
+        protected Animal(int id, string kind)
         {
+            Id = id;
             Kind = kind;
             Food = string.Empty;
             Name = string.Empty;
             CageId = 0;
         }
 
-        protected Animal(string kind, string name, string food, int cageId)
+        protected Animal(int id, string kind, string name, string food, int cageId)
         {
+            Id = id;
             Food = food;
             Name = name;
             CageId = cageId;
@@ -22,6 +24,7 @@ namespace MyZoo.Common.ZooItems.BaseClasses
         }
 
         public int CageId { get; private set; }
+        public int Id { get; private set; }
         public string Name { get; private set; }
         public string Kind { get; private set; }
         public string Food { get; private set; }
@@ -30,11 +33,12 @@ namespace MyZoo.Common.ZooItems.BaseClasses
         {
             return new[]
                 {
+                    Id.ToString(),
                     GetType().Name,
                     Kind,
                     Name,
                     Food,
-                    CageId.ToString(CultureInfo.InvariantCulture)
+                    CageId.ToString()
                 };
         }
     }

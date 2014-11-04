@@ -1,4 +1,6 @@
-﻿namespace MyZoo.Common.Animal.Interfaces.Common.ZooItems.Interfaces
+﻿
+
+namespace MyZoo.Common.Interfaces
 {
     public interface ICage
     {
@@ -6,6 +8,7 @@
         int Height { get; }
         int Width { get; }
         int Length { get; }
+        int Id { get; }
 
         string[] ShowDetails();
     }

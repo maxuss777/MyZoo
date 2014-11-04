@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 
+
 namespace MyZoo.Common.Interfaces
 {
     public interface IZooItemsRepository<T>

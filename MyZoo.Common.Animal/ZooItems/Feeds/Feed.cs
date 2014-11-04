@@ -1,18 +1,21 @@
-﻿using MyZoo.Common.Animal.Interfaces.Common.ZooItems.Interfaces;
+﻿using MyZoo.Common.Interfaces;
 
-namespace MyZoo.Common.Feeds
+
+namespace MyZoo.Common.ZooItems
 {
     public sealed class Feed : IFeed
     {
-        public Feed(string type, int gross)
+        public Feed(int id, string forWhom)
         {
-            Type = type;
-            Gross = gross;
-            ForWhom = string.Empty;
+            Id = id;
+            ForWhom = forWhom;
+            Type = string.Empty;
+            Gross = 0;
         }
 
-        public Feed(string type, int gross, string forWhom)
+        public Feed(int id, string type, int gross, string forWhom)
         {
+            Id = id;
             Type = type;
             Gross = gross;            
             ForWhom = forWhom;
@@ -21,11 +24,13 @@ namespace MyZoo.Common.Feeds
         public string Type { get; private set; }
         public int Gross { get; private set; }
         public string ForWhom { get; private set; }
+        public int Id { get; private set; }
 
         public string[] ShowDetails()
         {
-            return new string[]
+            return new[]
                 {
+                    Id.ToString(),
                     Type,
                     Gross.ToString(),
                     ForWhom

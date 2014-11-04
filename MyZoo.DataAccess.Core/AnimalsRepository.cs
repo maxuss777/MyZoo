@@ -48,7 +48,7 @@ namespace MyZoo.DataAccess.Core
                         while (reader.Read())
                         {
                             string str = string.Format(
-                                "MyZoo.Common.ZooItems.Species.{0}, MyZoo.Common.Animal", reader["specie"]);
+                                "MyZoo.Common.ZooItems.{0}, MyZoo.Common.Animal", reader["specie"]);
                             var type = Type.GetType(str);
 
                             if (type != null)
@@ -56,6 +56,7 @@ namespace MyZoo.DataAccess.Core
                                 animalsList.Add(
                                     (IAnimal)Activator.CreateInstance(
                                     type, 
+                                    reader["id"],
                                     reader["kind"],
                                     reader["name"],
                                     reader["food"],
@@ -85,7 +86,7 @@ namespace MyZoo.DataAccess.Core
                         {
                             var str = 
                                 string.Format(
-                                "MyZoo.Common.ZooItems.Species.{0}, MyZoo.Common.Animal", reader["specie"]);
+                                "MyZoo.Common.ZooItems.{0}, MyZoo.Common.Animal", reader["specie"]);
                             
                             var type = Type.GetType(str);
 
@@ -93,6 +94,7 @@ namespace MyZoo.DataAccess.Core
                             {
                                 return (IAnimal)Activator.CreateInstance(
                                     type, 
+                                    reader["id"],
                                     reader["kind"],
                                     reader["name"],
                                     reader["food"],

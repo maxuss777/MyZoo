@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Data.SqlClient;
-using MyZoo.Common.Animal.Interfaces.Common.ZooItems.Interfaces;
-using MyZoo.Common.Feeds;
+using MyZoo.Common.ZooItems;
 using MyZoo.Common.Interfaces;
 
 
@@ -46,7 +45,7 @@ namespace MyZoo.DataAccess.Core
                         while (reader.Read())
                         {
                             feedsList.Add(
-                                new Feed(reader["type"].ToString(), (int)reader["gross"], reader["forWhom"].ToString())
+                                new Feed((int)reader["id"], reader["type"].ToString(), (int)reader["gross"], reader["forWhom"].ToString())
                                 );
                         }
                     }
@@ -70,7 +69,7 @@ namespace MyZoo.DataAccess.Core
                         while (reader.Read())
                         {
                             return
-                                new Feed(reader["type"].ToString(), (int)reader["gross"], reader["forWhom"].ToString());
+                                new Feed((int) reader["id"], reader["type"].ToString(), (int) reader["gross"], reader["forWhom"].ToString());
                         }
                     }
                 }

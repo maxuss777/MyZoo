@@ -1,19 +1,16 @@
-﻿namespace MyZoo.Common.ZooItems.Species
+﻿
+
+namespace MyZoo.Common.ZooItems
 {
-    public sealed class Mammal : BaseClasses.Animal
+    public sealed class Mammal : Animal
     {
-       public Mammal(string kind) : base(kind)
+       public Mammal(int id, string kind) : base(id, kind)
        {
        }
 
-       public Mammal(string kind, string name, string food, int cageId)
-           : base(kind, name, food, cageId)
+       public Mammal(int id, string kind, string name, string food, int cageId)
+           : base(id, kind, name, food, cageId)
        {
-       }
-
-       public override string[] ShowDetails()
-       {
-           return base.ShowDetails();
        }
     }
 }

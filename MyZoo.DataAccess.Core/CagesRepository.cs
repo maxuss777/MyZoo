@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data.SqlClient;
-using MyZoo.Common.Animal.Interfaces.Common.ZooItems.Interfaces;
 using MyZoo.Common.Interfaces;
-using MyZoo.Common.ZooItems.BaseClasses;
+using MyZoo.Common.ZooItems;
 
 
 namespace MyZoo.DataAccess.Core
@@ -46,7 +45,7 @@ namespace MyZoo.DataAccess.Core
                     {
                         while (reader.Read())
                         {
-                            cagesList.Add(new Cage((string)reader["type"]));
+                            cagesList.Add(new Cage((int)reader["id"], (string)reader["type"]));
                         }
                     }
                 }
@@ -69,6 +68,7 @@ namespace MyZoo.DataAccess.Core
                         while (reader.Read())
                         {
                             return new Cage(
+                                (int)reader["id"],
                                 (string)reader["type"],
                                 (int)reader["height"],
                                 (int)reader["width"],

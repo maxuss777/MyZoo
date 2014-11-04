@@ -1,23 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MyZoo.Common.Animal.Interfaces.Common.ZooItems.Interfaces;
-using MyZoo.Common.ZooItems.BaseClasses;
+using MyZoo.Common.Interfaces;
+using MyZoo.Common.ZooItems;
 using MyZoo.DataAccess.Core;
 using NUnit.Framework;
 using ServiceStack;
-using Assert = NUnit.Framework.Assert;
 
 
 namespace MyZoo.Business.Services.Tests
 {
-    [TestClass]
     public class CagesServicesTests
     {
         private readonly CagesRepository _cageRepository = new CagesRepository();
         private readonly CagesServices _cageServices = new CagesServices();
         private ICage _actualCage;
         private ICage _expectedCage;
+        private ICage _lastCreatedCage;
         private List<ICage> _actualCagesList;
         private List<ICage> _expectedCagesList;
             
@@ -29,9 +27,10 @@ namespace MyZoo.Business.Services.Tests
             //arrange
             _actualCagesList = new List<ICage>
                 {
-                    new Cage("Mammal")
+                    new Cage(0, "Mammal")
                 };
-            _expectedCage = new Cage("Mammal");
+            _lastCreatedCage = _cageRepository.GetLastCreatedItem();
+            _expectedCage = new Cage(_lastCreatedCage.Id + 1, "Mammal");
 
             //act
             _cageServices.CreateCages(_actualCagesList);
@@ -47,9 +46,10 @@ namespace MyZoo.Business.Services.Tests
             //arrange
             _actualCagesList = new List<ICage>
             {
-                new Cage("Mammal", 2, 3, 5)
+                new Cage(0, "Mammal", 2, 3, 5)
             };
-            _expectedCage = new Cage("Mammal", 2, 3, 5);
+            _lastCreatedCage = _cageRepository.GetLastCreatedItem();
+            _expectedCage = new Cage(_lastCreatedCage.Id + 1, "Mammal", 2, 3, 5);
 
             //act
             _cageServices.CreateCages(_actualCagesList);
@@ -96,8 +96,8 @@ namespace MyZoo.Business.Services.Tests
         public void GetCageDetails()
         {
             //arrange
-            var actualDetails = new[] { "Mammal", "2", "3", "5" };
-            _actualCage = new Cage("Mammal", 2, 3, 5);
+            var actualDetails = new[] {"0", "Mammal", "2", "3", "5" };
+            _actualCage = new Cage(0, "Mammal", 2, 3, 5);
 
             //act
             var expectedDetails = _actualCage.ShowDetails();
@@ -107,5 +107,23 @@ namespace MyZoo.Business.Services.Tests
         }
 
         #endregion
+
+        #region Create cages randomly
+
+        [Test]
+        public void CreateCagesRandomly()
+        {
+            //arrange
+            _expectedCage = _cageRepository.GetLastCreatedItem();
+            
+            //act
+            _cageServices.CreateCageRandomly(typeof(Animal));
+            _actualCage = _cageRepository.GetLastCreatedItem();
+
+            //assert
+            Assert.AreEqual(expected: _expectedCage.Id + 1, actual: _actualCage.Id);
+        }
+
+        #endregion
     }
-} 
+}

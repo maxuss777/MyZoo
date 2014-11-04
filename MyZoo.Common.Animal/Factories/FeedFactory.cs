@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
-using MyZoo.Common.Animal.Interfaces.Common.ZooItems.Interfaces;
+using MyZoo.Common.Interfaces;
+
 
 namespace MyZoo.Common.ZooItems
 {
