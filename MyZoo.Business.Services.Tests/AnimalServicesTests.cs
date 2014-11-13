@@ -31,13 +31,13 @@ namespace MyZoo.Business.Services.Tests
             };
             _lastCreatedAnimal = _animalRepository.GetLastCreatedItem();
             _expectedAnimal = new Mammal(_lastCreatedAnimal.Id + 1, "tiger");
+
             //act
             _animalServices.CreateAnimals(_actualAnimalsList);
             _actualAnimal = _animalRepository.GetLastCreatedItem();
 
             //assert
-            Assert.AreEqual(expected: _expectedAnimal.Id, actual: _actualAnimal.Id);
-            Assert.AreEqual(expected: _expectedAnimal.Kind, actual: _actualAnimal.Kind);
+            Assert.AreEqual(expected: _expectedAnimal.ToJson(), actual: _actualAnimal.ToJson());
         }
 
         [Test]
@@ -50,6 +50,7 @@ namespace MyZoo.Business.Services.Tests
             };
             _lastCreatedAnimal = _animalRepository.GetLastCreatedItem();
             _expectedAnimal = new Mammal(_lastCreatedAnimal.Id + 1, "tiger", "Name", "Food", 1);
+
             //act
             _animalServices.CreateAnimals(_actualAnimalsList);
             _actualAnimal = _animalRepository.GetLastCreatedItem();
@@ -68,6 +69,7 @@ namespace MyZoo.Business.Services.Tests
             };
             _lastCreatedAnimal = _animalRepository.GetLastCreatedItem();
             _expectedAnimal = new Reptile(_lastCreatedAnimal.Id + 1, "crocodile");
+
             //act
             _animalServices.CreateAnimals(_actualAnimalsList);
             _actualAnimal = _animalRepository.GetLastCreatedItem();
@@ -86,6 +88,7 @@ namespace MyZoo.Business.Services.Tests
             };
             _lastCreatedAnimal = _animalRepository.GetLastCreatedItem();
             _expectedAnimal = new Reptile(_lastCreatedAnimal.Id + 1, "crocodile", "Name", "Food", 2 );
+
             //act
             _animalServices.CreateAnimals(_actualAnimalsList);
             _actualAnimal = _animalRepository.GetLastCreatedItem();
@@ -104,6 +107,7 @@ namespace MyZoo.Business.Services.Tests
             };
             _lastCreatedAnimal = _animalRepository.GetLastCreatedItem();
             _expectedAnimal = new Bird(_lastCreatedAnimal.Id + 1, "owl");
+
             //act
             _animalServices.CreateAnimals(_actualAnimalsList);
             _actualAnimal = _animalRepository.GetLastCreatedItem();
@@ -179,7 +183,6 @@ namespace MyZoo.Business.Services.Tests
         }
 
         #endregion
-
 
     }
 }

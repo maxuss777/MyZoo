@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using MyZoo.Common.Interfaces;
 
@@ -10,21 +11,67 @@ namespace MyZoo.DataAccess.Core
     {
         public void Insert(IAnimal animal)
         {
-            const string sql =
-                "INSERT INTO Animals(specie, kind, name, food, cageId)"+
-                " Values(@Specie, @Kind, @Name, @Food, @CageId)";
-
             using (var connection = new SqlConnection(ConnectionString))
             {
                 connection.Open();
 
-                using (var command = new SqlCommand(sql, connection))
+                using (var command = new SqlCommand("InsertAnimal", connection))
                 {
-                    command.Parameters.AddWithValue("@Specie", animal.GetType().Name);
-                    command.Parameters.AddWithValue("@Kind", animal.Kind);
-                    command.Parameters.AddWithValue("@Name", animal.Name);
-                    command.Parameters.AddWithValue("@Food", animal.Food);
-                    command.Parameters.AddWithValue("@CageId", animal.CageId);
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    #region Input parameters
+
+                    var param = new SqlParameter
+                        {
+                            ParameterName = "@specie",
+                            SqlDbType = SqlDbType.VarChar,
+                            Size = 50,
+                            Value = animal.GetType().Name,
+                            Direction = ParameterDirection.Input
+                        };
+                    command.Parameters.Add(param);
+
+                    param = new SqlParameter
+                    {
+                        ParameterName = "@kind",
+                        SqlDbType = SqlDbType.VarChar,
+                        Size = 50,
+                        Value = animal.Kind,
+                        Direction = ParameterDirection.Input
+                    };
+                    command.Parameters.Add(param);
+
+                    param = new SqlParameter
+                    {
+                        ParameterName = "@name",
+                        SqlDbType = SqlDbType.VarChar,
+                        Size = 50,
+                        Value = animal.Name,
+                        Direction = ParameterDirection.Input
+                    };
+                    command.Parameters.Add(param);
+
+                    param = new SqlParameter
+                    {
+                        ParameterName = "@food",
+                        SqlDbType = SqlDbType.VarChar,
+                        Size = 50,
+                        Value = animal.Food,
+                        Direction = ParameterDirection.Input
+                    };
+                    command.Parameters.Add(param);
+
+                    param = new SqlParameter
+                    {
+                        ParameterName = "@cageId",
+                        SqlDbType = SqlDbType.Int,
+                        Size = 10,
+                        Value = animal.CageId,
+                        Direction = ParameterDirection.Input
+                    };
+                    command.Parameters.Add(param);
+
+                    #endregion
 
                     command.ExecuteNonQuery();
                 }
@@ -33,22 +80,22 @@ namespace MyZoo.DataAccess.Core
 
         public IEnumerable<IAnimal> GetAllItems()
         {
-            const string sql = "SELECT * FROM Animals";
-
             var animalsList = new List<IAnimal>();
 
             using (var connection = new SqlConnection(ConnectionString))
             {
                 connection.Open();
 
-                using (var command = new SqlCommand(sql, connection))
+                using (var command = new SqlCommand("GetAllAnimals", connection))
                 {
-                    using (SqlDataReader reader = command.ExecuteReader())
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    using (var reader = command.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-                            string str = string.Format(
-                                "MyZoo.Common.ZooItems.{0}, MyZoo.Common.Animal", reader["specie"]);
+                            string str = string.Format("MyZoo.Common.ZooItems.{0}, MyZoo.Common.Animal", reader["specie"]);
+
                             var type = Type.GetType(str);
 
                             if (type != null)
@@ -72,16 +119,17 @@ namespace MyZoo.DataAccess.Core
 
         public IAnimal GetLastCreatedItem()
         {
-            const string sql = "SELECT TOP 1 * FROM Animals ORDER BY id DESC";
 
             using (var connection = new SqlConnection(ConnectionString))
             {
                 connection.Open();
 
-                using (var command = new SqlCommand(sql, connection))
+                using (var command = new SqlCommand("GetLastCreatedAnimal", connection))
                 {
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
+                        command.CommandType = CommandType.StoredProcedure;
+
                         while(reader.Read())
                         {
                             var str = 

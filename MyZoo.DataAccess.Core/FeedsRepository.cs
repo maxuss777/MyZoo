@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using MyZoo.Common.ZooItems;
 using MyZoo.Common.Interfaces;
@@ -10,19 +11,48 @@ namespace MyZoo.DataAccess.Core
     {
         public void Insert(IFeed feed)
         {
-            const string sql =
-               "INSERT INTO Feeds(type, gross, forWhom) Values(@Type, @Gross, @ForWhom)";
-
             using (var connection = new SqlConnection(ConnectionString))
             {
                 connection.Open();
 
-                using (var command = new SqlCommand(sql, connection))
+                using (var command = new SqlCommand("InsertFeed", connection))
                 {
-                    command.Parameters.AddWithValue("@Type", feed.Type);
-                    command.Parameters.AddWithValue("@Gross", feed.Gross);
-                    command.Parameters.AddWithValue("@ForWhom", feed.ForWhom);
+                    command.CommandType = CommandType.StoredProcedure;
 
+                    #region Input parameters
+
+                    var param = new SqlParameter
+                    {
+                        ParameterName = "@type",
+                        SqlDbType = SqlDbType.VarChar,
+                        Size = 50,
+                        Value = feed.Type,
+                        Direction = ParameterDirection.Input
+                    };
+                    command.Parameters.Add(param);
+
+                    param = new SqlParameter
+                    {
+                        ParameterName = "@gross",
+                        SqlDbType = SqlDbType.Int,
+                        Size = 10,
+                        Value = feed.Gross,
+                        Direction = ParameterDirection.Input
+                    };
+                    command.Parameters.Add(param);
+
+                    param = new SqlParameter
+                    {
+                        ParameterName = "@forWhom",
+                        SqlDbType = SqlDbType.VarChar,
+                        Size = 50,
+                        Value = feed.ForWhom,
+                        Direction = ParameterDirection.Input
+                    };
+                    command.Parameters.Add(param);
+
+                    #endregion
+                    
                     command.ExecuteNonQuery();
                 }
             }
@@ -30,22 +60,26 @@ namespace MyZoo.DataAccess.Core
 
         public IEnumerable<IFeed> GetAllItems()
         {
-            const string sql = "SELECT * FROM Feeds";
-
             var feedsList = new List<IFeed>();
 
             using (var connection = new SqlConnection(ConnectionString))
             {
                 connection.Open();
 
-                using (var command = new SqlCommand(sql, connection))
+                using (var command = new SqlCommand("GetAllFeeds", connection))
                 {
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
+                        command.CommandType = CommandType.StoredProcedure;
+
                         while (reader.Read())
                         {
                             feedsList.Add(
-                                new Feed((int)reader["id"], reader["type"].ToString(), (int)reader["gross"], reader["forWhom"].ToString())
+                                new Feed(
+                                    (int) reader["id"],
+                                    (string) reader["type"],
+                                    (int) reader["gross"],
+                                    (string) reader["forWhom"])
                                 );
                         }
                     }
@@ -56,20 +90,23 @@ namespace MyZoo.DataAccess.Core
 
         public IFeed GetLastCreatedItem()
         {
-            const string getEntities = "SELECT TOP 1 * FROM Feeds ORDER BY id DESC";
-
             using (var connection = new SqlConnection(ConnectionString))
             {
                 connection.Open();
 
-                using (var command = new SqlCommand(getEntities, connection))
+                using (var command = new SqlCommand("GetLastCreatedFeed", connection))
                 {
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
                         while (reader.Read())
                         {
                             return
-                                new Feed((int) reader["id"], reader["type"].ToString(), (int) reader["gross"], reader["forWhom"].ToString());
+                                new Feed(
+                                    (int) reader["id"],
+                                    (string) reader["type"],
+                                    (int) reader["gross"],
+                                    (string) reader["forWhom"]
+                                    );
                         }
                     }
                 }
