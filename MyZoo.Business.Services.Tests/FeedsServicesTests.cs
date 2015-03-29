@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using MyZoo.Common.Interfaces;
+using MyZoo.Common.Animal.Interfaces.Common.ZooItems.Interfaces;
+using MyZoo.Common.Animal.ZooItems.Animals;
 using MyZoo.Common.ZooItems;
 using MyZoo.DataAccess.Core;
 using NUnit.Framework;

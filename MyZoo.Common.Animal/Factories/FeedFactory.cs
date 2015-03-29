@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
-using MyZoo.Common.Interfaces;
+using MyZoo.Common.Animal.Interfaces.Common.ZooItems.Interfaces;
 
-
-namespace MyZoo.Common.ZooItems
+namespace MyZoo.Common.Animal.Factories
 {
     public abstract class FeedFactory
     {

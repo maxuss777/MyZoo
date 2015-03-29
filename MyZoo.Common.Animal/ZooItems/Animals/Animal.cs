@@ -1,7 +1,7 @@
-﻿using MyZoo.Common.Interfaces;
+﻿using System.Globalization;
+using MyZoo.Common.Animal.Interfaces.Common.ZooItems.Interfaces;
 
-
-namespace MyZoo.Common.ZooItems
+namespace MyZoo.Common.Animal.ZooItems.Animals
 {
     public abstract class Animal : IAnimal
     {
@@ -33,12 +33,12 @@ namespace MyZoo.Common.ZooItems
         {
             return new[]
                 {
-                    Id.ToString(),
+                    Id.ToString(CultureInfo.InvariantCulture),
                     GetType().Name,
                     Kind,
                     Name,
                     Food,
-                    CageId.ToString()
+                    CageId.ToString(CultureInfo.InvariantCulture)
                 };
         }
     }

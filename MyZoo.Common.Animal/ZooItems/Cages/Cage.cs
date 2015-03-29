@@ -1,4 +1,4 @@
-﻿using MyZoo.Common.Interfaces;
+﻿using MyZoo.Common.Animal.Interfaces.Common.ZooItems.Interfaces;
 
 
 namespace MyZoo.Common.ZooItems

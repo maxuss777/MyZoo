@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using MyZoo.Common.Interfaces;
+using MyZoo.Common.Animal.Interfaces.Common.ZooItems.Interfaces;
+using MyZoo.Common.Animal.Interfaces.DataAccess.Core.Interfaces;
 using MyZoo.Common.ZooItems;
 
 

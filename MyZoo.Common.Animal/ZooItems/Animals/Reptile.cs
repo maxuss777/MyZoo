@@ -2,7 +2,7 @@
 
 namespace MyZoo.Common.ZooItems
 {
-    public sealed class Reptile : Animal
+    public sealed class Reptile : Animal.ZooItems.Animals.Animal
     {
         public Reptile(int id, string kind) : base(id, kind)
         {

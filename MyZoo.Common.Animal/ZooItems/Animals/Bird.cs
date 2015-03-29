@@ -1,6 +1,4 @@
-﻿
-
-namespace MyZoo.Common.ZooItems
+﻿namespace MyZoo.Common.Animal.ZooItems.Animals
 {
     public sealed class Bird : Animal
     {

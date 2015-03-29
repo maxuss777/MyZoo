@@ -1,6 +1,4 @@
-﻿
-
-namespace MyZoo.Common.Interfaces
+﻿namespace MyZoo.Common.Animal.Interfaces.Common.ZooItems.Interfaces
 {
     public interface ICage
     {
